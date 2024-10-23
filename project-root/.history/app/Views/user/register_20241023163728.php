@@ -15,7 +15,7 @@
                             </div>
                         </div>
                         <div class="col-12">
-                            <form action="<?=base_url('regUser')?>" method="POST" id="reglog_form" class="needs-validation" novalidate>
+                            <form action="<?=base_url('regUser')?>" method="POST" class="needs-validation" novalidate>
                                 <div class="row">
                                     <div class="col-6 text-center">
                                         <div class="form-group">
@@ -24,26 +24,26 @@
                                     </div>
                                     <div class="col-6 text-center">
                                         <div class="form-group">
-                                            <input type="text" name="last_name" class="form-control" id="validationCustom02" id="last_name" placeholder="Keresztnév" required>
+                                            <input type="text" name="last_name" class="form-control" id="validationCustom01" id="last_name" placeholder="Keresztnév" required>
                                         </div>
                                     </div>
                                     <div class="col-12 text-center">
                                         <div class="form-group">
-                                            <input type="email" name="email" class="form-control" id="validationCustom03" id="email" placeholder="E-mail cím" required>
+                                            <input type="email" name="email" class="form-control" id="validationCustom01" id="email" placeholder="E-mail cím" required>
                                         </div>
                                     </div>
                                     <div class="col-6 text-center">
                                         <div class="form-group">
-                                            <input type="password" name="password" id="password" class="form-control" id="validationCustom04" id="password" placeholder="Jelszó" required>
+                                            <input type="password" name="password" class="form-control" id="validationCustom01" id="password" placeholder="Jelszó" required>
                                         </div>
                                     </div>
                                     <div class="col-6 text-center">
                                         <div class="form-group">
-                                            <input type="password" name="password2" id="password2" class="form-control" id="validationCustom05" id="password2" placeholder="Jelszó 2x" required>
+                                            <input type="password" name="password2" class="form-control" id="validationCustom01" id="password2" placeholder="Jelszó 2x" required>
                                         </div>
                                     </div>
                                     <div class="button-block">
-                                        <input type="submit" value="Regisztráció" class="standard-btn submit-btn">
+                                        <input type="submit" value="Regisztráció" class="standard-btn">
                                     </div>
                                 </div>
                             </form>
@@ -64,25 +64,6 @@
     }    
 
     docReady(function(){
-        (function () {
-          'use strict'
-
-          // Fetch all the forms we want to apply custom Bootstrap validation styles to
-          var forms = document.querySelectorAll('.needs-validation');
-
-          // Loop over them and prevent submission
-          Array.prototype.slice.call(forms)
-            .forEach(function (form) {
-              form.addEventListener('submit', function (event) {
-                if (!form.checkValidity()) {
-                  event.preventDefault()
-                  event.stopPropagation()
-                }
-            
-                form.classList.add('was-validated')
-              }, false)
-            })
-        })()
         addEventListener('DOMContentLoaded', (e) =>{
             e.preventDefault();
             let password = document.getElementById('password');

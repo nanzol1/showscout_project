@@ -29,17 +29,17 @@
                                     </div>
                                     <div class="col-12 text-center">
                                         <div class="form-group">
-                                            <input type="email" name="email" class="form-control" id="validationCustom03" id="email" placeholder="E-mail cím" required>
+                                            <input type="email" name="email" class="form-control" id="validationCustom01" id="email" placeholder="E-mail cím" required>
                                         </div>
                                     </div>
                                     <div class="col-6 text-center">
                                         <div class="form-group">
-                                            <input type="password" name="password" id="password" class="form-control" id="validationCustom04" id="password" placeholder="Jelszó" required>
+                                            <input type="password" name="password" id="password" class="form-control" id="validationCustom01" id="password" placeholder="Jelszó" required>
                                         </div>
                                     </div>
                                     <div class="col-6 text-center">
                                         <div class="form-group">
-                                            <input type="password" name="password2" id="password2" class="form-control" id="validationCustom05" id="password2" placeholder="Jelszó 2x" required>
+                                            <input type="password" name="password2" id="password2" class="form-control" id="validationCustom01" id="password2" placeholder="Jelszó 2x" required>
                                         </div>
                                     </div>
                                     <div class="button-block">

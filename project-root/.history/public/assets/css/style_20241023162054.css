@@ -3,11 +3,6 @@
     font-display: swap;
     src: url(../fonts/Kanit/Kanit-Medium.ttf) format("truetype");
 }
-@font-face {
-    font-family: "Kanit Regular";
-    font-display: swap;
-    src: url(../fonts/Kanit/Kanit-Regular.ttf) format("truetype");
-}
 
 .register-box {
 	width: 700px;
@@ -15,10 +10,6 @@
 	border-top-right-radius: 100px;
 	border-top-left-radius: 100px;
 	overflow: hidden;
-    box-shadow: 5px 5px 6px 0 #00000050;
-}
-.register-fluid .form-group .form-control{
-    display: unset !important;
 }
 .register-head {
     height: 188px;
@@ -59,20 +50,6 @@
   .register-title{
     padding: 1em 0;
   }
-  .register-fluid{
-    padding: 4em 0;
-  }
-  .register-fluid .form-group input{
-    margin: .5em 0;
-    padding: 0 .5em;
-    font-family: 'Kanit Regular';
-    font-size: 18px;
-  }
-  .register-fluid .form-group input::placeholder{
-    opacity: 1;
-    color: black;
-
-  }
   .register-fluid .form-group input:not(input[type="email"]){
     height: 35px;
     width: 253px;
@@ -84,17 +61,17 @@
     width: 615px;
     background-color: transparent;
     border: 1px solid black;
+    margin: 1em 0;
   }
   .button-block{
     display: flex;
     justify-content: center;
-    margin-top: 1em !important;
   }
   .standard-btn{
-    padding: 0.1em 2em;
+    padding: 0.2em 3em;
     background-color: rgb(0, 255, 0);
     border: none;
-    font-family: 'Kanit Regular';
+    font-family: 'Kanit Medium';
     font-size: 24px;
     text-align: center;
   }

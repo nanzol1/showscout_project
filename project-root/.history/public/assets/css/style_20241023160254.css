@@ -1,0 +1,55 @@
+@font-face {
+    font-family: "Kanit Medium";
+    font-display: swap;
+    src: url(../fonts/Kanit/Kanit-Medium.ttf) format("truetype");
+}
+
+.register-box {
+	width: 700px;
+	margin: 0 auto;
+	border-top-right-radius: 100px;
+	border-top-left-radius: 100px;
+	overflow: hidden;
+}
+.register-head {
+    height: 188px;
+  }
+  .register-imgbox {
+    width: 100%;
+    height: 100%;
+  }
+  .register-imgbox img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  .register-body {
+    height: 345px;
+    position: relative;
+    background: #fff;
+  }
+  .register-body::before {
+    width: 100%;
+    height: 100%;
+    left: 0;
+    top: 0;
+    position: absolute;
+    background: #00000050;
+  }
+  .register-body::before {
+    content: "";
+    width: 100%;
+    height: 100%;
+    left: 0;
+    top: 0;
+    position: absolute;
+    background: #00000050;
+    z-index: 1;
+  }
+  .register-body > * {
+    z-index: 2;
+    position: relative;
+  }
+  .regular-title{
+    font-family: 'Kanit Medium';
+  }
