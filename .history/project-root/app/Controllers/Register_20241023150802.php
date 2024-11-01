@@ -21,14 +21,16 @@ class Register extends BaseController{
         $regModel = new User_model();
         $formData = [];
         if($this->request->getMethod() == "POST"){
-            $username = $this->request->getPost("username");
+            $first_name = $this->request->getPost("first_name");
+            $last_name = $this->request->getPost("last_name");
             $email = $this->request->getPost("email");
             $password = $this->request->getPost("password");
             $now = Time::now('Europe/Budapest','hu_HU');
 
-            if($username && $email){
+            if($first_name && $last_name && $email){
                 $formData = [
-                    'username' => $username,
+                    'first_name' => $first_name,
+                    'last_name' => $last_name,
                     'email' => $email,
                     'password' => password_hash($password,PASSWORD_DEFAULT),
                     'created' => $now->toDateString(),

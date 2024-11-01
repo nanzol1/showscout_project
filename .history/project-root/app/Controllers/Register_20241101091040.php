@@ -26,9 +26,10 @@ class Register extends BaseController{
             $password = $this->request->getPost("password");
             $now = Time::now('Europe/Budapest','hu_HU');
 
-            if($username && $email){
+            if($first_name && $last_name && $email){
                 $formData = [
-                    'username' => $username,
+                    'first_name' => $first_name,
+                    'last_name' => $last_name,
                     'email' => $email,
                     'password' => password_hash($password,PASSWORD_DEFAULT),
                     'created' => $now->toDateString(),

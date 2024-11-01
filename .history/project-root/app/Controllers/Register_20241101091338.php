@@ -28,7 +28,8 @@ class Register extends BaseController{
 
             if($username && $email){
                 $formData = [
-                    'username' => $username,
+                    'first_name' => $first_name,
+                    'last_name' => $last_name,
                     'email' => $email,
                     'password' => password_hash($password,PASSWORD_DEFAULT),
                     'created' => $now->toDateString(),

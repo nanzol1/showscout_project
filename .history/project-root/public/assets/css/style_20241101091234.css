@@ -1,0 +1,103 @@
+@font-face {
+    font-family: "Kanit Medium";
+    font-display: swap;
+    src: url(../fonts/Kanit/Kanit-Medium.ttf) format("truetype");
+}
+@font-face {
+    font-family: "Kanit Regular";
+    font-display: swap;
+    src: url(../fonts/Kanit/Kanit-Regular.ttf) format("truetype");
+}
+
+.register-box {
+	width: 700px;
+	margin: 0 auto;
+	border-top-right-radius: 100px;
+	border-top-left-radius: 100px;
+	overflow: hidden;
+    box-shadow: 5px 5px 6px 0 #00000050;
+}
+.register-fluid .form-group .form-control{
+    display: unset !important;
+}
+.register-head {
+    height: 188px;
+  }
+  .register-imgbox {
+    width: 100%;
+    height: 100%;
+  }
+  .register-imgbox img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  .register-body {
+    height: 345px;
+    position: relative;
+    background: #fff;
+  }
+  .register-body::before {
+    content: "";
+    width: 100%;
+    height: 100%;
+    left: 0;
+    top: 0;
+    position: absolute;
+    background: #00000020;
+    z-index: 1;
+  }
+  .register-body > * {
+    z-index: 2;
+    position: relative;
+  }
+  .regular-title{
+    font-family: 'Kanit Medium';
+    font-size: 32px;
+    text-align: center;
+  }
+  .register-title{
+    padding: 1em 0;
+  }
+  .register-fluid{
+    padding: 4em 0;
+  }
+  .register-fluid .form-group input{
+    margin: .5em 0;
+    padding: 0 .5em;
+    font-family: 'Kanit Regular';
+    font-size: 18px;
+  }
+  .register-fluid .form-group input::placeholder{
+    opacity: 1;
+    color: black;
+
+  }
+  .register-fluid .form-group input:not(input[type="email"]){
+    height: 35px;
+    width: 253px;
+    background-color: transparent;
+    border: 1px solid black;
+  }
+  #username{
+    width: 615px;
+  }
+  .register-fluid .form-group input:is(input[type="email"]){
+    height: 35px;
+    width: 615px;
+    background-color: transparent;
+    border: 1px solid black;
+  }
+  .button-block{
+    display: flex;
+    justify-content: center;
+    margin-top: 1em !important;
+  }
+  .standard-btn{
+    padding: 0.1em 2em;
+    background-color: rgb(0, 255, 0);
+    border: none;
+    font-family: 'Kanit Regular';
+    font-size: 24px;
+    text-align: center;
+  }
