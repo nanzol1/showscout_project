@@ -1,6 +1,7 @@
 <div class="container mt-5">
     <div class="row">
         <div class="col-lg-4 pb-5">
+            <!-- Account Sidebar-->
             <div class="author-card pb-3">
                 <div class="author-card-cover"></div>
                 <div class="author-card-profile">
@@ -19,6 +20,7 @@
                 </nav>
             </div>
         </div>
+        <!-- Profile Settings-->
         <div class="col-lg-8 pb-5">
             <form class="row">
                 <div class="col-md-12">
