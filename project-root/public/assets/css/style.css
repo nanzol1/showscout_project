@@ -33,9 +33,10 @@
     object-fit: cover;
   }
   .register-body {
-    height: 345px;
+    height: auto;
     position: relative;
     background: #fff;
+    padding-bottom: 1em;
   }
   .register-body::before {
     content: "";

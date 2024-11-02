@@ -20,27 +20,45 @@ class Register extends BaseController{
     public function regUser(){
         $regModel = new User_model();
         $formData = [];
+        $sameData = [];
+        $isDuplicate = false;
         if($this->request->getMethod() == "POST"){
+            //$first_name = $this->request->getPost('first_name');
+            //$last_name = $this->request->getPost('last_name');
             $username = $this->request->getPost("username");
             $email = $this->request->getPost("email");
             $password = $this->request->getPost("password");
             $now = Time::now('Europe/Budapest','hu_HU');
-
-            if($username && $email){
-                $formData = [
-                    'username' => $username,
-                    'email' => $email,
-                    'password' => password_hash($password,PASSWORD_DEFAULT),
-                    'created' => $now->toDateString(),
-                ];
-
-                if($regModel->regUser($formData)){
-                    return redirect()->to('/login');
+            $users = $regModel->getAllUser();
+            if(($username && $email)){
+                foreach($users as $item){
+                    if($username == $item['Username']){
+                        return redirect()->back()->with('error','Ez a felhasználónév már foglalt!');
+                    }elseif($email == $item['Email']){
+                        return redirect()->back()->with('error','Ez az email cím már foglalt!');
+                    }
+                }
+                if((preg_match("/^[a-zA-Z0-9][a-zA-Z0-9]{3,}$/",$username) 
+                && preg_match("/^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*\W)(?!.* ).{8,16}$/",$password)) 
+                && !$isDuplicate){
+                    $formData = [
+                        'Username' => $username,
+                        'Email' => $email,
+                        'Password' => password_hash($password,PASSWORD_DEFAULT),
+                        'Created' => $now->toDateString(),
+                    ];
+    
+                    if($regModel->regUser($formData)){
+                        return redirect()->to('/register');
+                    }else{
+                        return redirect()->to('/register')->with('error','Hiba történt a regisztráció során!');
+                    }
                 }else{
                     return redirect()->to('/register')->with('error','Hiba történt a regisztráció során!');
                 }
             }else{
                 $formData = [];
+                return redirect()->to('/register')->with('error','Hiba történt a regisztráció során!');
             }
         }
         return $this->loadPage('user/register',$formData);
