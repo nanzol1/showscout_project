@@ -14,7 +14,7 @@
             <div class="wizard">
                 <nav class="list-group list-group-flush">
                     <a class="list-group-item active" href="#">
-                        <i class="fe-icon-user text-muted"></i>Profile Settings
+                        <i class="fe-icon-user text-muted"></i>Profilom
                     </a>
                 </nav>
             </div>
@@ -23,25 +23,25 @@
             <form class="row">
                 <div class="col-md-12">
                     <div class="form-group">
-                        <label for="account-fn">Username</label>
+                        <label for="account-fn">Felhasználónév</label>
                         <input class="form-control" type="text" id="account-fn" value="" placeholder="Felhasználónév" required="">
                     </div>
                 </div>
                 <div class="col-md-12">
                     <div class="form-group">
-                        <label for="account-email">E-mail Address</label>
-                        <input class="form-control" type="email" id="account-email" value="daniel.adams@example.com" disabled="">
+                        <label for="account-email">E-mail cím</label>
+                        <input class="form-control" type="email" id="account-email" value="" placeholder="example@example.com">
                     </div>
                 </div>
                 <div class="col-md-6">
                     <div class="form-group">
-                        <label for="account-pass">New Password</label>
+                        <label for="account-pass">Új jelszó</label>
                         <input class="form-control" type="password" id="account-pass">
                     </div>
                 </div>
                 <div class="col-md-6">
                     <div class="form-group">
-                        <label for="account-confirm-pass">Confirm Password</label>
+                        <label for="account-confirm-pass">Új jelszó megerősítése</label>
                         <input class="form-control" type="password" id="account-confirm-pass">
                     </div>
                 </div>
