@@ -23,13 +23,18 @@ class Register extends BaseController{
         $sameData = [];
         $isDuplicate = false;
         if($this->request->getMethod() == "POST"){
-            //$first_name = $this->request->getPost('first_name');
-            //$last_name = $this->request->getPost('last_name');
+            $first_name = $this->request->getPost('first_name');
+            $last_name = $this->request->getPost('last_name');
             $username = $this->request->getPost("username");
             $email = $this->request->getPost("email");
             $password = $this->request->getPost("password");
             $now = Time::now('Europe/Budapest','hu_HU');
             $users = $regModel->getAllUser();
+
+            $firstNamePattern = '/^[A-ZÁÉÍÓÖŐÚÜŰ][a-záéíóöőúüű]*(?: [A-ZÁÉÍÓÖŐÚÜŰ][a-záéíóöőúüű]*)*$/';
+            $lastNamePattern = '/^[A-ZÁÉÍÓÖŐÚÜŰ][a-záéíóöőúüű]*(?:[ -][A-ZÁÉÍÓÖŐÚÜŰ][a-záéíóöőúüű]*)*$/';
+
+
             if(($username && $email)){
                 foreach($users as $item){
                     if($username == $item['Username']){
@@ -38,7 +43,17 @@ class Register extends BaseController{
                         return redirect()->back()->with('error','Ez az email cím már foglalt!');
                     }
                 }
-                if((preg_match("/^[a-zA-Z0-9][a-zA-Z0-9]{3,}$/",$username) 
+
+                if (!preg_match($firstnamePattern, $first_name)) {
+                    return redirect()->to('/register')->with('error', 'A keresztneved érvénytelen!');
+                }
+
+                if (!preg_match($lastnamePattern, $last_name)) {
+                    return redirect()->to('/register')->with('error', 'A vezetékneved érvénytelen!');
+                }
+
+
+                if((preg_match("/^[a-zA-Z0-9][a-zA-Z0-9]{3,}$/",$username)
                 && preg_match("/^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*\W)(?!.* ).{8,16}$/",$password)) 
                 && !$isDuplicate){
                     $formData = [
