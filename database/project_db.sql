@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 01, 2024 at 03:07 PM
+-- Generation Time: Nov 03, 2024 at 01:10 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -20,6 +20,47 @@ SET time_zone = "+00:00";
 --
 -- Database: `project_db`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `admin`
+--
+
+CREATE TABLE `admin` (
+  `ID` int(11) NOT NULL,
+  `Password` varchar(255) NOT NULL,
+  `Created` datetime NOT NULL DEFAULT current_timestamp(),
+  `User_ID` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `media`
+--
+
+CREATE TABLE `media` (
+  `ID` int(11) NOT NULL,
+  `Title` varchar(255) NOT NULL,
+  `Description` text NOT NULL,
+  `Released` date NOT NULL,
+  `Img_path` varchar(255) NOT NULL,
+  `Ss_id` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `streamingservices`
+--
+
+CREATE TABLE `streamingservices` (
+  `ID` int(11) NOT NULL,
+  `Name` varchar(50) NOT NULL,
+  `Link` varchar(255) NOT NULL,
+  `Lowest_price_plan` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -43,6 +84,26 @@ CREATE TABLE `user` (
 --
 
 --
+-- Indexes for table `admin`
+--
+ALTER TABLE `admin`
+  ADD PRIMARY KEY (`ID`),
+  ADD KEY `admin_user` (`User_ID`);
+
+--
+-- Indexes for table `media`
+--
+ALTER TABLE `media`
+  ADD PRIMARY KEY (`ID`),
+  ADD KEY `media` (`Ss_id`);
+
+--
+-- Indexes for table `streamingservices`
+--
+ALTER TABLE `streamingservices`
+  ADD PRIMARY KEY (`ID`);
+
+--
 -- Indexes for table `user`
 --
 ALTER TABLE `user`
@@ -55,10 +116,44 @@ ALTER TABLE `user`
 --
 
 --
+-- AUTO_INCREMENT for table `admin`
+--
+ALTER TABLE `admin`
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `media`
+--
+ALTER TABLE `media`
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `streamingservices`
+--
+ALTER TABLE `streamingservices`
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
   MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- Constraints for dumped tables
+--
+
+--
+-- Constraints for table `admin`
+--
+ALTER TABLE `admin`
+  ADD CONSTRAINT `admin_user` FOREIGN KEY (`User_ID`) REFERENCES `user` (`ID`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Constraints for table `media`
+--
+ALTER TABLE `media`
+  ADD CONSTRAINT `media` FOREIGN KEY (`Ss_id`) REFERENCES `streamingservices` (`ID`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
