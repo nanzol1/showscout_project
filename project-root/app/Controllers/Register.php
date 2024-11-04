@@ -44,25 +44,27 @@ class Register extends BaseController{
                     }
                 }
 
-                if (!preg_match($firstnamePattern, $first_name)) {
+                if (!preg_match($firstNamePattern, $first_name)) {
                     return redirect()->to('/register')->with('error', 'A keresztneved érvénytelen!');
                 }
 
-                if (!preg_match($lastnamePattern, $last_name)) {
+                if (!preg_match($lastNamePattern, $last_name)) {
                     return redirect()->to('/register')->with('error', 'A vezetékneved érvénytelen!');
                 }
 
 
                 if((preg_match("/^[a-zA-Z0-9][a-zA-Z0-9]{3,}$/",$username)
-                && preg_match("/^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*\W)(?!.* ).{8,16}$/",$password)) 
+                && preg_match("/^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*\W)(?!.* ).{8,16}$/",$password))
                 && !$isDuplicate){
                     $formData = [
+                        'First_name' => $first_name,
+                        'Last_name' => $last_name,
                         'Username' => $username,
                         'Email' => $email,
                         'Password' => password_hash($password,PASSWORD_DEFAULT),
                         'Created' => $now->toDateString(),
                     ];
-    
+
                     if($regModel->regUser($formData)){
                         return redirect()->to('/register');
                     }else{
