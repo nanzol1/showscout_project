@@ -276,3 +276,50 @@ a.list-group-item, .list-group-item-action {
     content: '';
 }
 /*PROFILE CSS END*/
+
+/*HOME CSS START*/
+.movie-container {
+  padding: 20px;
+}
+
+.movie-card {
+  display: flex;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  overflow: hidden;
+  margin-bottom: 20px;
+}
+
+.movie-image {
+  width: 30%;
+  padding: 10px;
+}
+
+.movie-image img {
+  width: 100%;
+  height: auto;
+}
+
+.movie-info {
+  padding: 15px;
+  width: 70%;
+}
+
+.movie-heading {
+  font-size: 1.5em;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.movie-release {
+  color: #777;
+  font-size: 1.1em;
+  margin-bottom: 15px;
+}
+
+.movie-summary {
+  font-size: 1.2em;
+  color: #333;
+  line-height: 1.5;
+}
+/*HOME CSS END*/
