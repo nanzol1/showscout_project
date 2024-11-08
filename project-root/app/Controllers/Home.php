@@ -2,9 +2,11 @@
 
 namespace App\Controllers;
 use App\Models\Media_model;
+use CodeIgniter\Files\File;
 
 class Home extends BaseController
 {
+    protected $helpers = ['form'];
 
     public function index()
     {
@@ -18,10 +20,11 @@ class Home extends BaseController
     public function loadMovies()
     {
         $moviesModel = new Media_model();
-        $data['movies'] = $moviesModel->findAll();
+        $movies = $moviesModel->getStreaming();
+        $data['movies'] = $movies;
 
         if (empty($data['movies'])) {
-            return redirect()->to('/register')->with('error', 'Nincs megjeleníthető film.');
+            return $movies = [];
         }
 
         return $this->loadPage('user/home', $data);
