@@ -11,3 +11,5 @@ $routes->post('/regUser', 'Register::index');
 $routes->get('/regUser',"Register::index");
 $routes->get('/profile', 'Profile::index');
 $routes->get('/admin', 'Admin::index');
+$routes->post('/admin/createAdmin', 'Admin::createAdmin');
+$routes->post('/admin/createMedia', 'Admin::createMedia');

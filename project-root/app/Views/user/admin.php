@@ -24,17 +24,26 @@
                         <button type="submit">Létrehozás</button>
                      </form>
                   </div>
+                  <?=session('error')?>
+                  <?=session('success')?>
                   <div class="form-card">
                      <h3>Film hozzáadása</h3>
-                     <form>
+                     <form action="<?=base_url('admin/createMedia')?>" method="POST">
                         <label for="film-title">Film címe:</label>
-                        <input type="text" id="film-title" placeholder="Film címe">
+                        <input type="text" id="film-title" name="film_title" placeholder="Film címe">
                         <label for="film-url">Film URL:</label>
-                        <input type="text" id="film-url" placeholder="Film URL">
+                        <input type="text" id="film-url" name="film_url" placeholder="Film URL">
+                        <label for="film_released">Film megjelenési dátum:</label>
+                        <input type="text" id="film_released" name="film_released" placeholder="Film Dátum">
                         <label for="film-description">Film leírása:</label>
-                        <textarea id="film-description" placeholder="Film leírása"></textarea>
+                        <textarea id="film-description" name="film_desc" placeholder="Film leírása"></textarea>
                         <label for="film-image">Film kép feltöltése:</label>
-                        <input type="file" id="film-image" accept="image/*">
+                        <input type="file" id="film-image" name="film_img" accept="image/*">
+                        <select name="sservices" id="0">
+                           <?php foreach($services as $item):?>
+                              <option value="<?=$item['ID']?>"><?=$item['Name']?></option>
+                           <?php endforeach;?>
+                        </select>
                         <button type="submit">Létrehozás</button>
                      </form>
                   </div>
