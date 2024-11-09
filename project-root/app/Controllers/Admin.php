@@ -2,6 +2,7 @@
 
 namespace App\Controllers;
 
+use App\Models\Admin_model;
 use App\Models\Media_model;
 use App\Models\Streamingservice_model;
 use App\Models\User_model;
@@ -22,7 +23,27 @@ class Admin extends BaseController{
     }
 
     public function createAdmin(){
-        //TODO
+        $adminModel = new Admin_model();
+        if($this->request->getMethod() === "POST"){
+            $admin_email = $this->request->getPost('admin_email') ?? '';
+            $admin_password = $this->request->getPost('admin_password') ?? '';
+            $admin_userId = $this->request->getPost('admin_userId') ?? '';
+            if($admin_email && $admin_password){
+                $formData = [
+                    'email' => $admin_email,
+                    'Password' => password_hash($admin_password,PASSWORD_DEFAULT),
+                    'User_ID' => $admin_userId,
+                ];
+
+                if($adminModel->createAdmin($formData)){
+                    return redirect()->to(base_url('admin'))->with('success','Admin sikeresen létrehozva!');
+                }else{
+                    return redirect()->to(base_url('admin'))->with('success','Sikertelen admin létrehozás!');
+                }
+            }
+        }
+        return $this->index();
+
     }
 
     public function createMedia(){

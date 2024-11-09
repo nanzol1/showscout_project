@@ -26,6 +26,10 @@ class User_model extends Model{
     public function deleteUser($userId){
         return $this->delete($userId);
     }
+
+    public function updateAdmin($userId,$data = []){
+        return $this->where('ID',$userId)->set($data)->update();
+    }
     
 }
 

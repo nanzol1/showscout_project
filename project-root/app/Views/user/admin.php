@@ -16,11 +16,16 @@
                   </div>
                   <div class="form-card">
                      <h3>Admin hozzáadása</h3>
-                     <form>
+                     <form action="<?=base_url('admin/createAdmin')?>" method="POST">
                         <label for="admin-email">Admin email:</label>
-                        <input type="email" id="admin-email" placeholder="Admin email">
+                        <input type="email" id="admin-email" name="admin_email" placeholder="Admin email">
                         <label for="admin-password">Admin jelszó:</label>
-                        <input type="password" id="admin-password" placeholder="Admin jelszó">
+                        <input type="password" id="admin-password" name="admin_password" placeholder="Admin jelszó">
+                        <select name="admin_userId" id="0">
+                           <?php foreach($users as $item):?>
+                              <option value="<?=$item['ID']?>"><?=$item['Username']?></option>
+                           <?php endforeach;?>
+                        </select>
                         <button type="submit">Létrehozás</button>
                      </form>
                   </div>
