@@ -10,3 +10,4 @@ $routes->get('/register', 'Register::index');
 $routes->post('/regUser', 'Register::index');
 $routes->get('/regUser',"Register::index");
 $routes->get('/profile', 'Profile::index');
+$routes->get('/admin', 'Admin::index');

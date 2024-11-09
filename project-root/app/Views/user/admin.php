@@ -6,12 +6,12 @@
                <div class="sidebar">
                   <div class="card">
                      <p>👤</p>
-                     <p>6</p>
+                     <p><?=count($users)?></p>
                      <p>Regisztrált felhasználók</p>
                   </div>
                   <div class="card">
                      <p>📝</p>
-                     <p>5</p>
+                     <p><?=count($medias)?></p>
                      <p>Hozzáadott filmek</p>
                   </div>
                   <div class="form-card">
@@ -53,48 +53,19 @@
                            </tr>
                         </thead>
                         <tbody>
-                           <tr>
-                              <td>Teszt1</td>
-                              <td><a href="mailto:Teszt1@aol.com">Teszt1@aol.com</a></td>
-                              <td>Admin</td>
-                              <td>2024-11-01</td>
-                              <td><a href="#">Törlés</a></td>
-                           </tr>
-                           <tr>
-                              <td>Teszt2</td>
-                              <td><a href="mailto:Teszt2@aol.com">Teszt2@aol.com</a></td>
-                              <td>Admin</td>
-                              <td>2024-11-01</td>
-                              <td><a href="#">Törlés</a></td>
-                           </tr>
-                           <tr>
-                              <td>Teszt3</td>
-                              <td><a href="mailto:Teszt3@aol.com">Teszt3@aol.com</a></td>
-                              <td>Admin</td>
-                              <td>2024-11-01</td>
-                              <td><a href="#">Törlés</a></td>
-                           </tr>
-                           <tr>
-                              <td>Teszt4</td>
-                              <td><a href="mailto:Teszt4@aol.com">Teszt4@aol.com</a></td>
-                              <td>Admin</td>
-                              <td>2024-11-01</td>
-                              <td><a href="#">Törlés</a></td>
-                           </tr>
-                           <tr>
-                              <td>Teszt5</td>
-                              <td><a href="mailto:Teszt5@aol.com">Teszt5@aol.com</a></td>
-                              <td>Admin</td>
-                              <td>2024-11-01</td>
-                              <td><a href="#">Törlés</a></td>
-                           </tr>
-                           <tr>
-                              <td>Teszt6</td>
-                              <td><a href="mailto:Teszt6@aol.com">Teszt6@aol.com</a></td>
-                              <td>Admin</td>
-                              <td>2024-11-01</td>
-                              <td><a href="#">Törlés</a></td>
-                           </tr>
+                           <?php foreach($users as $item):?>
+                              <tr>
+                                 <td><?=$item['Username']?></td>
+                                 <td><a href="mailto:Teszt1@aol.com"><?=$item['Email']?></a></td>
+                                 <?php if($item['Is_admin']):?>
+                                    <td>Admin</td>
+                                 <?php else:?>
+                                    <td>Felhasználó</td>
+                                 <?php endif;?>
+                                 <td><?=$item['Created']?></td>
+                                 <td><button type="button" class="btn btn-danger" data-id="<?=$item['ID']?>">Törlés</button></td>
+                              </tr>
+                           <?php endforeach;?>
                         </tbody>
                      </table>
                   </div>
@@ -109,31 +80,13 @@
                            </tr>
                         </thead>
                         <tbody>
-                           <tr>
-                              <td>Film1</td>
-                              <td>/Film1</td>
-                              <td><a href="#">Törlés</a></td>
-                           </tr>
-                           <tr>
-                              <td>Film2</td>
-                              <td>/Film2</td>
-                              <td><a href="#">Törlés</a></td>
-                           </tr>
-                           <tr>
-                              <td>Film3</td>
-                              <td>/Film3</td>
-                              <td><a href="#">Törlés</a></td>
-                           </tr>
-                           <tr>
-                              <td>Film4</td>
-                              <td>/Film4</td>
-                              <td><a href="#">Törlés</a></td>
-                           </tr>
-                           <tr>
-                              <td>Film5</td>
-                              <td>/Film5</td>
-                              <td><a href="#">Törlés</a></td>
-                           </tr>
+                           <?php foreach($medias as $item):?>
+                              <tr>
+                                 <td><?=$item['Title']?></td>
+                                 <td>URL</td>
+                                 <td><button type="button" class="btn btn-danger" data-id="<?=$item['ID']?>">Törlés</button></td>
+                              </tr>
+                           <?php endforeach;?>
                         </tbody>
                      </table>
                   </div>
