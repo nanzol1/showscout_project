@@ -42,7 +42,7 @@
                         <input type="text" id="film_released" name="film_released" placeholder="Film Dátum">
                         <label for="film-description">Film leírása:</label>
                         <textarea id="film-description" name="film_desc" placeholder="Film leírása"></textarea>
-                        <label for="film-image">Film kép feltöltése:</label>
+                        <label for="film-image">Film kép feltöltése max(2000 x 2000):</label>
                         <input type="file" id="film-image" name="userfile" accept="image/*">
                         <select name="sservices" id="0">
                            <?php foreach($services as $item):?>

@@ -67,27 +67,19 @@ class Admin extends BaseController{
                         'is_image[userfile]',
                         'mime_in[userfile,image/jpg,image/jpeg,image/gif,image/png,image/webp]',
                         'max_size[userfile,100]',
-                        'max_dims[userfile,1024,768]',
+                        'max_dims[userfile,2000,2000]',
                     ],
                 ],
             ];
             if (!$this->validateData([], $validationRule)) {
                 $data = ['errors' => $this->validator->getErrors()];
-    
-                var_dump("Sikertelen");
-
             }
     
             $img = $this->request->getFile('userfile');
     
             if (!$img->hasMoved()) {
-                //$filepath = 'assets/images/' . $img->store();
                 $newName = $img->getRandomName() ?? '';
                 $img->move('assets/images/', $newName);
-    
-                //$data = ['uploaded_fileinfo' => new File($filepath)];
-    
-                //var_dump($filepath);
             }
     
             $data = ['errors' => 'The file has already been moved.'];
