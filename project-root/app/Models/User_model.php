@@ -30,6 +30,9 @@ class User_model extends Model{
     public function updateAdmin($userId,$data = []){
         return $this->where('ID',$userId)->set($data)->update();
     }
+    public function findUserById($userId){
+        return $this->where('ID',$userId)->first();
+    }
     
 }
 

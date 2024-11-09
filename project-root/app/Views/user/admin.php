@@ -54,35 +54,37 @@
                   </div>
                </div>
                <div class="content">
-                  <div class="table users">
-                     <h3>Felhasználók</h3>
-                     <table>
-                        <thead>
-                           <tr>
-                              <th>Név:</th>
-                              <th>Email:</th>
-                              <th>Szerepkör:</th>
-                              <th>Regisztrálási dátum:</th>
-                              <th>Művelet:</th>
-                           </tr>
-                        </thead>
-                        <tbody>
-                           <?php foreach($users as $item):?>
+                  <form action="<?=base_url('admin/deleteUser/')?>" method="POST">
+                     <div class="table users">
+                        <h3>Felhasználók</h3>
+                        <table>
+                           <thead>
                               <tr>
-                                 <td><?=$item['Username']?></td>
-                                 <td><a href="mailto:Teszt1@aol.com"><?=$item['Email']?></a></td>
-                                 <?php if($item['Is_admin']):?>
-                                    <td>Admin</td>
-                                 <?php else:?>
-                                    <td>Felhasználó</td>
-                                 <?php endif;?>
-                                 <td><?=$item['Created']?></td>
-                                 <td><button type="button" class="btn btn-danger" data-id="<?=$item['ID']?>">Törlés</button></td>
+                                 <th>Név:</th>
+                                 <th>Email:</th>
+                                 <th>Szerepkör:</th>
+                                 <th>Regisztrálási dátum:</th>
+                                 <th>Művelet:</th>
                               </tr>
-                           <?php endforeach;?>
-                        </tbody>
-                     </table>
-                  </div>
+                           </thead>
+                              <tbody>
+                                    <?php foreach($users as $item):?>
+                                       <tr>
+                                          <td><?=$item['Username']?></td>
+                                          <td><a href="mailto:Teszt1@aol.com"><?=$item['Email']?></a></td>
+                                          <?php if($item['Is_admin']):?>
+                                             <td>Admin</td>
+                                          <?php else:?>
+                                             <td>Felhasználó</td>
+                                          <?php endif;?>
+                                          <td><?=$item['Created']?></td>
+                                          <td><button type="button" class="btn btn-danger delete-btn" data-id="<?=$item['ID']?>">Törlés</button></td>
+                                       </tr>
+                                    <?php endforeach;?>
+                              </tbody>
+                        </table>
+                     </div>
+                  </form>
                   <div class="table films">
                      <h3>Filmek</h3>
                      <table>
@@ -98,7 +100,7 @@
                               <tr>
                                  <td><?=$item['Title']?></td>
                                  <td>URL</td>
-                                 <td><button type="button" class="btn btn-danger" data-id="<?=$item['ID']?>">Törlés</button></td>
+                                 <td><button type="button" class="btn btn-danger delete-btn" data-id="<?=$item['ID']?>">Törlés</button></td>
                               </tr>
                            <?php endforeach;?>
                         </tbody>
@@ -110,3 +112,35 @@
       </div>
    </div>
 </div>
+<script>
+   function docReady(fn) {
+       if (document.readyState === "complete" || document.readyState === "interactive") {
+           setTimeout(fn, 1);
+       } else {
+           document.addEventListener("DOMContentLoaded", fn);
+       }
+   }
+   docReady(function(){
+      let deleteBtn = document.querySelectorAll('.delete-btn');
+      deleteBtn.forEach(element => {
+         element.addEventListener('click',function(){
+            let dataId = $(this).data('id');
+            if(confirm("Biztosan szeretné törölni az ID: "+dataId+" felhasználót?")){
+               $.ajax({
+               url: '<?=base_url('admin/deleteUser/')?>'+dataId,
+               type:'POST',
+               data:{id:dataId},
+               success:function(response){
+                  console.log(response);
+                  location.reload();
+               },
+               error:function(xhr,error,status){
+                  console.log(xhr.responseText);
+                  console.log('Error: '+error+" "+"Status:"+status);
+               }
+            });
+            }
+         });
+      });
+   });
+</script>

@@ -5,35 +5,35 @@
             <div class="registration-container">
                <h1>Regisztráció</h1>
                <div class="form-box">
-                  <form>
+                  <form action="<?=base_url('/regUser')?>" method="POST" id="reglog_form">
                      <div class="form-row">
                         <div class="form-group">
                            <label for="validationCustom01" id="warning-label" class="warning-label">Vezetéknév</label>
-                           <input type="text" id="validationCustom01" placeholder="Vezetéknév">
+                           <input type="text" id="validationCustom01" name="last_name" placeholder="Vezetéknév">
                         </div>
                         <div class="form-group">
                            <label for="validationCustom02" id="warning-label-first-name" class="warning-label">Keresztnév</label>
-                           <input type="text" id="validationCustom02" placeholder="Keresztnév">
+                           <input type="text" id="validationCustom02" name="first_name" placeholder="Keresztnév">
                         </div>
                      </div>
                      <div class="form-row">
                         <div class="form-group">
                            <label for="validationCustom03" id="warning-label-username" class="warning-label">Felhasználónév</label>
-                           <input type="text" id="validationCustom03" placeholder="Felhasználónév">
+                           <input type="text" id="validationCustom03" name="username" placeholder="Felhasználónév">
                         </div>
                         <div class="form-group">
                            <label for="validationCustom04" id="warning-label-email" class="warning-label">Email</label>
-                           <input type="email" id="validationCustom04" placeholder="example@example.com">
+                           <input type="email" id="validationCustom04" name="email" placeholder="example@example.com">
                         </div>
                      </div>
                      <div class="form-row">
                         <div class="form-group">
                            <label for="validationCustom05" id="warning-label-password" class="warning-label">Jelszó</label>
-                           <input type="password" id="validationCustom05" placeholder="Jelszó">
+                           <input type="password" id="validationCustom05" name="password" placeholder="Jelszó">
                         </div>
                         <div class="form-group">
                            <label for="validationCustom06" id="warning-label-password2" class="warning-label">Jelszó megerősítése</label>
-                           <input type="password" id="validationCustom06" placeholder="Jelszó megerősítése">
+                           <input type="password" id="validationCustom06" name="password2" placeholder="Jelszó megerősítése">
                         </div>
                      </div>
                      <div class="form-group full-width">

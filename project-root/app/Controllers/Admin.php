@@ -85,6 +85,23 @@ class Admin extends BaseController{
 
     }
 
+    public function deleteUser($id){
+        $userModel = new User_model();
+        if($this->request->getMethod() === "POST"){
+            $user = $userModel->findUserById($id);
+            if($user){
+                $userModel->deleteUser($id);
+                return $this->response->setJSON(['success' => true, 'message' => "Felhasználó sikeresen törölve lett!"]);
+            }else{
+                return $this->response->setJSON(['error' => true, 'message' => "A felhasználó nem lett törölve!"]);
+            }
+        }
+    }
+
+    public function deleteMedia(){
+        //TODO
+    }
+
 
     public function loadPage($page = 0, $data = []){
         return view('templates/header').view($page,$data).view('templates/footer');
