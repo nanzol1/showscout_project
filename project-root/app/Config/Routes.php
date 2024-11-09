@@ -14,3 +14,4 @@ $routes->get('/admin', 'Admin::index');
 $routes->post('/admin/createAdmin', 'Admin::createAdmin');
 $routes->post('/admin/createMedia', 'Admin::createMedia');
 $routes->post('/admin/deleteUser/(:any)', 'Admin::deleteUser/$1');
+$routes->post('/admin/deleteMedia/(:any)', 'Admin::deleteMedia/$1');

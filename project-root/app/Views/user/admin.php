@@ -100,7 +100,7 @@
                               <tr>
                                  <td><?=$item['Title']?></td>
                                  <td>URL</td>
-                                 <td><button type="button" class="btn btn-danger delete-btn" data-id="<?=$item['ID']?>">Törlés</button></td>
+                                 <td><button type="button" class="btn btn-danger delete2-btn" data-id="<?=$item['ID']?>">Törlés</button></td>
                               </tr>
                            <?php endforeach;?>
                         </tbody>
@@ -128,6 +128,27 @@
             if(confirm("Biztosan szeretné törölni az ID: "+dataId+" felhasználót?")){
                $.ajax({
                url: '<?=base_url('admin/deleteUser/')?>'+dataId,
+               type:'POST',
+               data:{id:dataId},
+               success:function(response){
+                  console.log(response);
+                  location.reload();
+               },
+               error:function(xhr,error,status){
+                  console.log(xhr.responseText);
+                  console.log('Error: '+error+" "+"Status:"+status);
+               }
+            });
+            }
+         });
+      });
+      let deleteBtn2 = document.querySelectorAll('.delete2-btn');
+      deleteBtn2.forEach(e => {
+         e.addEventListener('click',function(){
+            let dataId = $(this).data('id');
+            if(confirm("Biztosan szeretné törölni az ID: "+dataId+" filmet/sorozatot?")){
+               $.ajax({
+               url: '<?=base_url('admin/deleteMedia/')?>'+dataId,
                type:'POST',
                data:{id:dataId},
                success:function(response){

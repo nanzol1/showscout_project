@@ -24,6 +24,13 @@ class Media_model extends Model
         return $this->insert($data);
     }
 
+    public function deleteMedia($mediaId){
+        return $this->delete($mediaId);
+    }
+    public function findMediaById($mediaId){
+        return $this->where('ID',$mediaId)->first();
+    }
+
 
 }
 ?>

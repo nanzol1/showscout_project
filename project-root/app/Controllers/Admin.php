@@ -98,8 +98,17 @@ class Admin extends BaseController{
         }
     }
 
-    public function deleteMedia(){
-        //TODO
+    public function deleteMedia($id){
+        $mediaModel = new Media_model();
+        if($this->request->getMethod() === "POST"){
+            $media = $mediaModel->findMediaById($id);
+            if($media){
+                $mediaModel->deleteMedia($id);
+                return $this->response->setJSON(['success' => true, 'message' => "Film/sorozat sikeresen törölve lett!"]);
+            }else{
+                return $this->response->setJSON(['error' => true, 'message' => "A film/sorozat nem lett törölve!"]);
+            }
+        }
     }
 
 
