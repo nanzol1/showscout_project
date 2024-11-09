@@ -99,7 +99,7 @@
                            <?php foreach($medias as $item):?>
                               <tr>
                                  <td><?=$item['Title']?></td>
-                                 <td>URL</td>
+                                 <td><?=$item['url'] ? '<a href="'.$item['url'].'">Link</a>' : 'Nincs' ?></td>
                                  <td><button type="button" class="btn btn-danger delete2-btn" data-id="<?=$item['ID']?>">Törlés</button></td>
                               </tr>
                            <?php endforeach;?>
