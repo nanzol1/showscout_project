@@ -33,7 +33,7 @@
                   <?=session('success')?>
                   <div class="form-card">
                      <h3>Film hozzáadása</h3>
-                     <form action="<?=base_url('admin/createMedia')?>" method="POST">
+                     <form action="<?=base_url('admin/createMedia')?>" method="POST" enctype="multipart/form-data">
                         <label for="film-title">Film címe:</label>
                         <input type="text" id="film-title" name="film_title" placeholder="Film címe">
                         <label for="film-url">Film URL:</label>
@@ -43,7 +43,7 @@
                         <label for="film-description">Film leírása:</label>
                         <textarea id="film-description" name="film_desc" placeholder="Film leírása"></textarea>
                         <label for="film-image">Film kép feltöltése:</label>
-                        <input type="file" id="film-image" name="film_img" accept="image/*">
+                        <input type="file" id="film-image" name="userfile" accept="image/*">
                         <select name="sservices" id="0">
                            <?php foreach($services as $item):?>
                               <option value="<?=$item['ID']?>"><?=$item['Name']?></option>

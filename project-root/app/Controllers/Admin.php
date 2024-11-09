@@ -6,8 +6,10 @@ use App\Models\Admin_model;
 use App\Models\Media_model;
 use App\Models\Streamingservice_model;
 use App\Models\User_model;
+use CodeIgniter\Files\File;
 
 class Admin extends BaseController{
+    protected $helpers = ['form'];
     public function index(){
         $userModel = new User_model();
         $mediaModel = new Media_model();
@@ -54,18 +56,50 @@ class Admin extends BaseController{
             $film_url = $this->request->getPost('film_url')  ?? '';
             $film_released = $this->request->getPost('film_released')  ?? '';
             $film_desc = $this->request->getPost('film_desc')  ?? '';
-            $film_img = $this->request->getPost('film_img')  ?? '';
+            //$film_img = $this->request->getPost('film_img')  ?? '';
             $film_ssid = $this->request->getPost('sservices')  ?? '';
 
+            $validationRule = [
+                'userfile' => [
+                    'label' => 'Movice pic',
+                    'rules' => [
+                        'uploaded[userfile]',
+                        'is_image[userfile]',
+                        'mime_in[userfile,image/jpg,image/jpeg,image/gif,image/png,image/webp]',
+                        'max_size[userfile,100]',
+                        'max_dims[userfile,1024,768]',
+                    ],
+                ],
+            ];
+            if (!$this->validateData([], $validationRule)) {
+                $data = ['errors' => $this->validator->getErrors()];
+    
+                var_dump("Sikertelen");
+
+            }
+    
+            $img = $this->request->getFile('userfile');
+    
+            if (!$img->hasMoved()) {
+                //$filepath = 'assets/images/' . $img->store();
+                $newName = $img->getRandomName() ?? '';
+                $img->move('assets/images/', $newName);
+    
+                //$data = ['uploaded_fileinfo' => new File($filepath)];
+    
+                //var_dump($filepath);
+            }
+    
+            $data = ['errors' => 'The file has already been moved.'];
 
             if($film_title && $film_url && $film_released &&
-            $film_desc && $film_img && $film_ssid){
+            $film_desc && $film_ssid){
                 $formData = [
                     'Title' => $film_title,
                     'url' => $film_url,
                     'Description' => $film_desc,
                     'Released' => $film_released,
-                    'Img_path' => $film_img,
+                    'Img_path' => $newName,
                     'Ss_id' => $film_ssid,
                 ];
 
