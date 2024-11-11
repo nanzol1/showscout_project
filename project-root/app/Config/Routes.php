@@ -15,3 +15,6 @@ $routes->post('/admin/createAdmin', 'Admin::createAdmin');
 $routes->post('/admin/createMedia', 'Admin::createMedia');
 $routes->post('/admin/deleteUser/(:any)', 'Admin::deleteUser/$1');
 $routes->post('/admin/deleteMedia/(:any)', 'Admin::deleteMedia/$1');
+$routes->get('/login', 'Login::index');
+$routes->post('/login', 'Login::authenticate');
+$routes->get('/login', 'Login::logout');
