@@ -33,7 +33,7 @@ class Login extends BaseController
                 'last_name' => $user['Last_name'],
                 'email' => $user['Email'],
             ]);
-            return redirect()->to('/');
+            return redirect()->to(base_url());
         }else{
             return redirect()->back()->with('error','Hibás felhasználónév vagy jelszó')->withInput();
         }

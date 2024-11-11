@@ -27,6 +27,7 @@ class Home extends BaseController
             return $movies = [];
         }
 
+
         return $this->loadPage('user/home', $data);
     }
 }
