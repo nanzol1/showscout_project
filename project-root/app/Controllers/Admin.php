@@ -50,6 +50,7 @@ class Admin extends BaseController{
 
     public function createMedia(){
         $mediaModel = new Media_model();
+        $user_Model = new User_model();
         $formData = [];
         if($this->request->getMethod() === "POST"){
             $film_title = $this->request->getPost('film_title') ?? '';
@@ -95,8 +96,10 @@ class Admin extends BaseController{
                     'Ss_id' => $film_ssid,
                 ];
 
-
+                $usersEmail = $user_Model->getUsersEmail();
+                $clnArray = array_column($usersEmail,'Email');
                 if($mediaModel->createMedia($formData)){
+                    sendMail($clnArray,$formData);
                     return redirect()->to(base_url('admin'))->with('success','Sikeres média feltöltés!');
                 }else{
                     return redirect()->to('admin')->with('error','Hiba történt a média feltöltése során!');

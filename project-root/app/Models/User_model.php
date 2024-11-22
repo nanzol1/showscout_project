@@ -16,6 +16,10 @@ class User_model extends Model{
         return $this->where('Email',$email)->first();
     }
 
+    public function getUsersEmail(){
+        return $this->select('Email')->findall();
+    }
+
     public function updateUser($userId,$data = []){
         return $this->where('ID',$userId)->set($data)->update();
     }

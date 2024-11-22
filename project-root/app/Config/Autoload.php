@@ -92,5 +92,6 @@ class Autoload extends AutoloadConfig
      */
     public $helpers = [
         'user_helper',
+        'tools_helper',
     ];
 }
