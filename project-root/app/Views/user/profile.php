@@ -22,7 +22,7 @@
         <div class="col-lg-8 pb-5">
             <?=session('success')?>
             <?=session('error')?>
-            <form class="row" action="<?=base_url('profile/updateUser')?>" method="POST">
+            <form class="row" action="<?=base_url('profile/updateUser')?>" method="POST" id="profile_form">
                 <div class="col-md-12">
                     <div class="form-group">
                         <label for="account-fn">Felhasználónév</label>
@@ -57,3 +57,19 @@
         </div>
     </div>
 </div>
+<script>
+    addEventListener('DOMContentLoaded',(e) =>{
+        $('#profile_form').on('submit',function(e){
+            e.preventDefault();
+            let isValid = false;
+            if($('#account-pass').val().match(/^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*\W)(?!.* ).{8,16}$/)){
+                if($('#account-pass').val() == $('#account-confirm-pass').val()){
+                    isValid = true;
+                }
+                if(isValid){
+                    $('#profile_form')[0].submit();
+                }
+            }
+        });
+    });
+</script>

@@ -29,25 +29,35 @@ class Profile extends BaseController{
         if($this->request->getMethod() === "POST"){
             $userDatas = session()->get();
             $modelDatas = $userModel->getUserByEmail($userDatas['email']);
-            $dataChanged = [];
             $username = $this->request->getPost('username');
             $email = $this->request->getPost('email');
             $password = $this->request->getPost('password');
+            $isChanged = false;
+
 
             if($username != $userDatas['username']){
                 session()->set('username',$username);
                 $userModel->updateUser($userDatas['user_id'],['Username' => $username]);
+                $isChanged = true;
             }
             if($email != $userDatas['email']){
                 session()->set('email',$email);
                 $userModel->updateUser($userDatas['user_id'],['Email' => $email]);
+                $isChanged = true;
             }
-            if(password_verify($password,$modelDatas['Password'])){
-                redirect()->to(base_url('profile'))->with('error','A jelszó nem egyezhet meg az előzővel!'); 
+            if(!empty($password)){
+                if(password_verify($password,$modelDatas['Password'])){
+                    redirect()->to(base_url('profile'))->with('error','A jelszó nem egyezhet meg az előzővel!'); 
+                }else{
+                    $userModel->updateUser($userDatas['user_id'],['Password' => password_hash($password,PASSWORD_DEFAULT)]);
+                    $isChanged = true;
+                }
+            }
+            if($isChanged){
+                return redirect()->to(base_url('profile'))->with('success','Sikeresen adat változtatás');
             }else{
-                $userModel->updateUser($userDatas['user_id'],['Password' => password_hash($password,PASSWORD_DEFAULT)]);
+                return redirect()->to(base_url('profile'));
             }
-            return redirect()->to(base_url('profile'))->with('success','Sikeresen adat változtatás');
         }
     }
 
