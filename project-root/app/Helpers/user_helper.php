@@ -2,7 +2,7 @@
 
 if(!function_exists('isUserLoggedIn')){
     function isUserLoggedIn(){
-        $userSession = session()->get();
+        $userSession = session()->get('user_id');
 
         if($userSession){
             return true;
