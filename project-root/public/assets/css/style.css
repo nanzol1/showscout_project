@@ -537,3 +537,90 @@ a.list-group-item, .list-group-item-action {
     color: #666;
 }
 /*LOGIN CSS END*/
+
+/* MOVIE DETAIL PAGE CSS START */
+.detail-container {
+    padding: 20px;
+    max-width: 1200px;
+    margin: 0 auto 10em;
+    display: flex;
+    flex-direction: column;
+}
+
+.movie-detail-card {
+    display: flex;
+    flex-wrap: wrap;
+    margin-bottom: 40px;
+    width: 900px;
+    height: 400px;
+    border: #0056b3 1em;
+}
+
+.detail-image img {
+    width: 300px;
+    height: 400px;
+    border-radius: 8px;
+}
+
+.movie-info {
+    margin-left: 20px;
+    flex: 1;
+}
+
+.movie-title {
+    font-size: 3em;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.movie-release-date{
+    margin-bottom: 50px;
+}
+
+.movie-release-date,
+.movie-streaming-provider,
+.movie-price {
+    font-weight: lighter;
+    font-size: 1.1em;
+    margin-top: 10px;
+}
+
+.movie-description-box {
+    margin-top: 30px;
+    word-break: break-word;
+}
+
+.movie-description-title {
+    font-size: 1.5em;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.detail-description {
+    font-size: 1.2em;
+    line-height: 1.6;
+}
+
+.description-text {
+    margin-top: 10px;
+}
+
+.return-btn {
+    padding: 10px 20px;
+    font-size: 16px;
+    background-color: #0056b3;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin-top: 20px;
+}
+
+.return-btn:hover {
+    background-color: #003d80;
+}
+
+.return-btn:focus {
+    outline: none;
+}
