@@ -12,5 +12,11 @@ class Streamingservice_model extends Model
     public function getAllServices(){
         return $this->findAll();
     }
+
+    public function getAllProviders()
+    {
+        return $this->findAll();
+    }
+
 }
 ?>

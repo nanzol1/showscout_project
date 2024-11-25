@@ -19,3 +19,5 @@ $routes->get('/login', 'Login::index');
 $routes->post('/login/authenticate', 'Login::authenticate');
 $routes->get('/logout', 'Login::logout');
 $routes->post('/profile/updateUser', 'Profile::updateUser');
+$routes->get('/film/reszletek/(:num)', 'Home::reszletek/$1');
+$routes->get('/home/filter', 'Home::filter');
