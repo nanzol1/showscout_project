@@ -81,13 +81,25 @@ class Home extends BaseController
 
     public function reszletek($id)
     {
-        $movieModel = new Media_model();
-        $movie = $movieModel->select('media.*, streamingservices.Name as StreamingProvider, streamingservices.Lowest_price_plan as Price, streamingservices.Link')
+        $movies = getMovies();
+        $casts = getCastByMovie($id);
+        $teaser = getMovieTeaser($id);
+        $providers = getWatchProviders($id);
+        foreach($movies as $item){
+            if(in_array($id,$item)){
+                $movie = $item;
+            }
+        }
+        $movie['casts'] = $casts;
+        $movie['teaser'] = $teaser;
+        $movie['providers'] = $providers;
+        //$movieModel = new Media_model();
+        /*$movie = $movieModel->select('media.*, streamingservices.Name as StreamingProvider, streamingservices.Lowest_price_plan as Price, streamingservices.Link')
             ->join('streamingservices', 'streamingservices.ID = media.Ss_id')
             ->where('media.ID', $id)
-            ->first();
+            ->first();*/
 
-        if (!$movie) {
+        if (!$movies) {
             throw new \CodeIgniter\Exceptions\PageNotFoundException("Movie not found");
         }
 
