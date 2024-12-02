@@ -2,10 +2,10 @@
 -- version 5.2.1
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1
--- Generation Time: Nov 25, 2024 at 01:18 AM
--- Server version: 10.4.32-MariaDB
--- PHP Version: 8.2.12
+-- Gép: 127.0.0.1
+-- Létrehozás ideje: 2024. Dec 02. 14:43
+-- Kiszolgáló verziója: 10.4.32-MariaDB
+-- PHP verzió: 8.2.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -18,13 +18,13 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `project_db`
+-- Adatbázis: `project_db`
 --
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `admin`
+-- Tábla szerkezet ehhez a táblához `admin`
 --
 
 CREATE TABLE `admin` (
@@ -36,16 +36,18 @@ CREATE TABLE `admin` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data for table `admin`
+-- A tábla adatainak kiíratása `admin`
 --
 
 INSERT INTO `admin` (`ID`, `email`, `Password`, `Created`, `User_ID`) VALUES
-(13, 'teszt@gmail.com', '$2y$10$qeIc1iQM6OrbWI7jiTvaxuf0lkv.qfzgPtIAsRKbpmbsy0crR2Ztm', '2024-11-09 09:48:12', 4);
+(13, 'teszt@gmail.com', '$2y$10$qeIc1iQM6OrbWI7jiTvaxuf0lkv.qfzgPtIAsRKbpmbsy0crR2Ztm', '2024-11-09 09:48:12', 4),
+(15, 'asdasdas@gmail.com', '$2y$10$9foYkon3W9Rb0JzFMZNwM.RW1BSoryVb5acSdMxVUQJBfzeTJCQ7u', '2024-12-02 14:17:26', 10),
+(16, 'zolika.nanasi@gmail.com', '$2y$10$MTG5hLXcvV4Mb4Kglds9megdT9oufy60HfGJzXLTxs2wnW3e2ujGa', '2024-12-02 14:34:39', 9);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `genres`
+-- Tábla szerkezet ehhez a táblához `genres`
 --
 
 CREATE TABLE `genres` (
@@ -54,7 +56,7 @@ CREATE TABLE `genres` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data for table `genres`
+-- A tábla adatainak kiíratása `genres`
 --
 
 INSERT INTO `genres` (`ID`, `Genre`) VALUES
@@ -67,7 +69,7 @@ INSERT INTO `genres` (`ID`, `Genre`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `media`
+-- Tábla szerkezet ehhez a táblához `media`
 --
 
 CREATE TABLE `media` (
@@ -82,19 +84,18 @@ CREATE TABLE `media` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data for table `media`
+-- A tábla adatainak kiíratása `media`
 --
 
 INSERT INTO `media` (`ID`, `Title`, `url`, `Description`, `Released`, `Img_path`, `Ss_id`, `Type`) VALUES
-(1, 'Filmcím', NULL, 'asdasdfsdgdgfhdghhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhasdasdfsdgdgfhdghhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhasdasdfsdgdgfhdghhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh', '2024-11-04', 'movieimg1.jpg', 1, ''),
+(1, 'Filmcím', NULL, 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.\n\n', '2024-11-04', 'movieimg1.jpg', 1, ''),
 (24, 'Outer Banks', 'https://www.netflix.com/browse?jbv=80236318', 'Film leírás', '2024-11-09', 'outerbanks.jpg', 1, ''),
-(33, 'Teszt képpel új', 'teszt', 'Teszt képpel új módszer', '2024-11-09', '1731145704_911855e82d1192893630.jpg', 2, ''),
-(34, 'Pókember: Nincs hazaút', NULL, 'With Spider-Man\'s identity now revealed, Peter asks Doctor Strange for help. When a spell goes wrong, dangerous foes from other worlds start to appear.', '2021-12-07', 'movieimg2.jpg', 2, 'Film');
+(33, 'Teszt képpel új', 'teszt', 'Teszt képpel új módszer', '2024-11-09', '1731145704_911855e82d1192893630.jpg', 2, '');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `mediaxgenre`
+-- Tábla szerkezet ehhez a táblához `mediaxgenre`
 --
 
 CREATE TABLE `mediaxgenre` (
@@ -103,7 +104,7 @@ CREATE TABLE `mediaxgenre` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data for table `mediaxgenre`
+-- A tábla adatainak kiíratása `mediaxgenre`
 --
 
 INSERT INTO `mediaxgenre` (`GenreID`, `MediaID`) VALUES
@@ -115,7 +116,7 @@ INSERT INTO `mediaxgenre` (`GenreID`, `MediaID`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `streamingservices`
+-- Tábla szerkezet ehhez a táblához `streamingservices`
 --
 
 CREATE TABLE `streamingservices` (
@@ -126,7 +127,7 @@ CREATE TABLE `streamingservices` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data for table `streamingservices`
+-- A tábla adatainak kiíratása `streamingservices`
 --
 
 INSERT INTO `streamingservices` (`ID`, `Name`, `Link`, `Lowest_price_plan`) VALUES
@@ -136,7 +137,7 @@ INSERT INTO `streamingservices` (`ID`, `Name`, `Link`, `Lowest_price_plan`) VALU
 -- --------------------------------------------------------
 
 --
--- Table structure for table `user`
+-- Tábla szerkezet ehhez a táblához `user`
 --
 
 CREATE TABLE `user` (
@@ -147,56 +148,60 @@ CREATE TABLE `user` (
   `Email` varchar(100) NOT NULL,
   `Password` varchar(255) NOT NULL,
   `Is_admin` tinyint(1) NOT NULL DEFAULT 0,
-  `Created` date NOT NULL DEFAULT current_timestamp()
+  `Created` date NOT NULL DEFAULT current_timestamp(),
+  `profile_img` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data for table `user`
+-- A tábla adatainak kiíratása `user`
 --
 
-INSERT INTO `user` (`ID`, `First_name`, `Last_name`, `Username`, `Email`, `Password`, `Is_admin`, `Created`) VALUES
-(1, 'Asd', 'Asd', 'asdf', 'asd@gmail.com', '$2y$10$NtvEGW/khZAIiRr8LXEcN.JP2uTxyP3SVG8u58dAvBEHa6uNCRoSi', 0, '2024-11-04'),
-(4, 'User', 'Teszt', 'tesztuser', 'teszt@gmail.com', '$2y$10$zgL0hSodmevkNwzDrSGUi.ZUzgFWQTBekjXhbr8ed4rASXHuVafY.', 1, '2024-11-08');
+INSERT INTO `user` (`ID`, `First_name`, `Last_name`, `Username`, `Email`, `Password`, `Is_admin`, `Created`, `profile_img`) VALUES
+(1, 'Asd', 'Asd', 'asdf', 'asd@gmail.com', '$2y$10$NtvEGW/khZAIiRr8LXEcN.JP2uTxyP3SVG8u58dAvBEHa6uNCRoSi', 0, '2024-11-04', ''),
+(4, 'User', 'Teszt', 'tesztuser', 'teszt@gmail.com', '$2y$10$zgL0hSodmevkNwzDrSGUi.ZUzgFWQTBekjXhbr8ed4rASXHuVafY.', 1, '2024-11-08', ''),
+(9, 'User', 'Teszt', 'testuser', 'zolika.nanasi@gmail.com', '$2y$10$VE41rhNcAwuE33qrVu/VIuAvjmsD/8qo.E7OSKBm0gyC3EvKcmdLq', 1, '2024-11-25', ''),
+(10, 'Asztuser', 'Tesztuser', 'testuser30', 'asdasdas@gmail.com', '$2y$10$dTvq200PQGxd4e3XIW64VeBZ3jTiKppVaVVd6o6sqpsp.7cyDbrzC', 1, '2024-11-25', '1733142743_cd89bd1f7a8450337fd4.png'),
+(11, 'Asdsd', 'Asdsd', 'asdasd', 'asd@asd2.com', '$2y$10$ruL1Avk8Ia3WlbLRggV2Quab.r/PyWE0n7UwjRuQN8H.CXjfpdHCu', 0, '2024-12-02', '1733146894_31f8f7bbbcb13169c811.png');
 
 --
--- Indexes for dumped tables
+-- Indexek a kiírt táblákhoz
 --
 
 --
--- Indexes for table `admin`
+-- A tábla indexei `admin`
 --
 ALTER TABLE `admin`
   ADD PRIMARY KEY (`ID`),
   ADD KEY `admin_user` (`User_ID`);
 
 --
--- Indexes for table `genres`
+-- A tábla indexei `genres`
 --
 ALTER TABLE `genres`
   ADD PRIMARY KEY (`ID`);
 
 --
--- Indexes for table `media`
+-- A tábla indexei `media`
 --
 ALTER TABLE `media`
   ADD PRIMARY KEY (`ID`),
   ADD KEY `media` (`Ss_id`);
 
 --
--- Indexes for table `mediaxgenre`
+-- A tábla indexei `mediaxgenre`
 --
 ALTER TABLE `mediaxgenre`
   ADD PRIMARY KEY (`GenreID`,`MediaID`),
   ADD KEY `media_fk` (`MediaID`);
 
 --
--- Indexes for table `streamingservices`
+-- A tábla indexei `streamingservices`
 --
 ALTER TABLE `streamingservices`
   ADD PRIMARY KEY (`ID`);
 
 --
--- Indexes for table `user`
+-- A tábla indexei `user`
 --
 ALTER TABLE `user`
   ADD PRIMARY KEY (`ID`),
@@ -204,57 +209,57 @@ ALTER TABLE `user`
   ADD UNIQUE KEY `unique_email` (`Email`) USING BTREE;
 
 --
--- AUTO_INCREMENT for dumped tables
+-- A kiírt táblák AUTO_INCREMENT értéke
 --
 
 --
--- AUTO_INCREMENT for table `admin`
+-- AUTO_INCREMENT a táblához `admin`
 --
 ALTER TABLE `admin`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
--- AUTO_INCREMENT for table `genres`
+-- AUTO_INCREMENT a táblához `genres`
 --
 ALTER TABLE `genres`
   MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
--- AUTO_INCREMENT for table `media`
+-- AUTO_INCREMENT a táblához `media`
 --
 ALTER TABLE `media`
   MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;
 
 --
--- AUTO_INCREMENT for table `streamingservices`
+-- AUTO_INCREMENT a táblához `streamingservices`
 --
 ALTER TABLE `streamingservices`
   MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
--- AUTO_INCREMENT for table `user`
+-- AUTO_INCREMENT a táblához `user`
 --
 ALTER TABLE `user`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
--- Constraints for dumped tables
+-- Megkötések a kiírt táblákhoz
 --
 
 --
--- Constraints for table `admin`
+-- Megkötések a táblához `admin`
 --
 ALTER TABLE `admin`
   ADD CONSTRAINT `admin_user` FOREIGN KEY (`User_ID`) REFERENCES `user` (`ID`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Constraints for table `media`
+-- Megkötések a táblához `media`
 --
 ALTER TABLE `media`
   ADD CONSTRAINT `media` FOREIGN KEY (`Ss_id`) REFERENCES `streamingservices` (`ID`);
 
 --
--- Constraints for table `mediaxgenre`
+-- Megkötések a táblához `mediaxgenre`
 --
 ALTER TABLE `mediaxgenre`
   ADD CONSTRAINT `genre_fk` FOREIGN KEY (`GenreID`) REFERENCES `genres` (`ID`) ON DELETE CASCADE ON UPDATE CASCADE,
