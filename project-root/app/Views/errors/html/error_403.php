@@ -2,7 +2,7 @@
 <html lang="en" id="your-element-selector">
 <head>
     <meta charset="utf-8">
-    <title>404 - Az oldal nem található</title>
+    <title>403 - Forbidden</title>
 
     <style>
         html{
@@ -129,9 +129,9 @@
         </div>
         <p>
             <?php if (ENVIRONMENT !== 'production') : ?>
-                Az oldal amit keresel nem található
+                <?= nl2br(esc($message)) ?>
             <?php else : ?>
-                Az oldal amit keresel nem található
+                <?= lang('Errors.sorryCannotFind') ?>
             <?php endif; ?>
         </p>
         <div class="button d-flex">

@@ -39,7 +39,8 @@ class Register extends BaseController{
                 foreach($users as $item){
                     if($username == $item['Username']){
                         return redirect()->back()->with('error','Ez a felhasználónév már foglalt!');
-                    }elseif($email == $item['Email']){
+                    }
+                    if($email == $item['Email']){
                         return redirect()->back()->with('error','Ez az email cím már foglalt!');
                     }
                 }

@@ -6,7 +6,7 @@ use CodeIgniter\Model;
 class User_model extends Model{
 
     protected $table = "user";
-    protected $allowedFields = ["First_name","Last_name","Username","Email","Password","Is_admin","Created"];
+    protected $allowedFields = ["First_name","Last_name","Username","Email","Password","Is_admin","Created","profile_img"];
 
     public function regUser($data){
         return $this->insert($data);

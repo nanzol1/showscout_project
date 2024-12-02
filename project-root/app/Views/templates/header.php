@@ -37,9 +37,11 @@
                   <a class="nav-link" href="<?=base_url('/login')?>">Login</a>
                 </li>
             <?php endif;?>
-            <li class="nav-item">
-              <a class="nav-link" href="<?=base_url('/admin')?>">Admin</a>
-            </li>
+            <?php if(isAdmin()):?>
+              <li class="nav-item">
+                <a class="nav-link" href="<?=base_url('/admin')?>">Admin</a>
+              </li>
+            <?php endif;?>
           </ul>
         </div>
       </div>

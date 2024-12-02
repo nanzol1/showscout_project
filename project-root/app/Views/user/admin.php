@@ -18,12 +18,12 @@
                      <h3>Admin hozzáadása</h3>
                      <form action="<?=base_url('admin/createAdmin')?>" method="POST">
                         <label for="admin-email">Admin email:</label>
-                        <input type="email" id="admin-email" name="admin_email" placeholder="Admin email">
+                        <input type="email" id="admin-email" name="admin_email" placeholder="Admin email" value="">
                         <label for="admin-password">Admin jelszó:</label>
                         <input type="password" id="admin-password" name="admin_password" placeholder="Admin jelszó">
-                        <select name="admin_userId" id="0">
+                        <select name="admin_userId" id="admins">
                            <?php foreach($users as $item):?>
-                              <option value="<?=$item['ID']?>"><?=$item['Username']?></option>
+                              <option value="<?=$item['ID']?>" id="admin"><?=$item['Username']?></option>
                            <?php endforeach;?>
                         </select>
                         <button type="submit">Létrehozás</button>
@@ -46,7 +46,7 @@
                         <input type="file" id="film-image" name="userfile" accept="image/*">
                         <select name="sservices" id="0">
                            <?php foreach($services as $item):?>
-                              <option value="<?=$item['ID']?>"><?=$item['Name']?></option>
+                              <option value="<?=$item['ID']?>" id="sservice"><?=$item['Name']?></option>
                            <?php endforeach;?>
                         </select>
                         <button type="submit">Létrehozás</button>
@@ -71,7 +71,7 @@
                                     <?php foreach($users as $item):?>
                                        <tr>
                                           <td><?=$item['Username']?></td>
-                                          <td><a href="mailto:Teszt1@aol.com"><?=$item['Email']?></a></td>
+                                          <td><a href="mailto:<?=$item['Email']?>"><?=$item['Email']?></a></td>
                                           <?php if($item['Is_admin']):?>
                                              <td>Admin</td>
                                           <?php else:?>
@@ -121,6 +121,15 @@
        }
    }
    docReady(function(){
+      $('#admins').on('change',function(e){
+            let sId = $(this).val();
+            let asd = JSON.parse('<?=json_encode($users)?>');
+            asd.forEach(element => {
+               if(element.ID === sId){
+                  $('#admin-email').val(element.Email);
+               }
+            });
+         });
       let deleteBtn = document.querySelectorAll('.delete-btn');
       deleteBtn.forEach(element => {
          element.addEventListener('click',function(){

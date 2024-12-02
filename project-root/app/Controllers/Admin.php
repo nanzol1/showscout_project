@@ -11,17 +11,29 @@ use CodeIgniter\Files\File;
 class Admin extends BaseController{
     protected $helpers = ['form'];
     public function index(){
-        $userModel = new User_model();
-        $mediaModel = new Media_model();
-        $medias = $mediaModel->getAllMedia();
-        $users = $userModel->getAllUser();
-        $ssModel = new Streamingservice_model();
-        $sservices = $ssModel->getAllServices();
-        $users = $users ? $data['users'] = $users : $data = [];
-        $medias = $medias ? $data['medias'] = $medias : $data = [];
-        $sservices = $sservices ? $data['services'] = $sservices : $data = [];
-
-        return $this->loadPage("user/admin",$data);
+        if(isAdmin()){
+            if(isAdminLoggedIn()){
+                $userModel = new User_model();
+                $mediaModel = new Media_model();
+                $medias = $mediaModel->getAllMedia();
+                $users = $userModel->getAllUser();
+                $ssModel = new Streamingservice_model();
+                $sservices = $ssModel->getAllServices();
+                $users = $users ? $data['users'] = $users : $data = [];
+                $medias = $medias ? $data['medias'] = $medias : $data = [];
+                $sservices = $sservices ? $data['services'] = $sservices : $data = [];
+        
+                return $this->loadPage("user/admin",$data);
+            }else{
+                return $this->loadPage("user/admin_login.php");
+            }
+        }else{
+            $this->response->setStatusCode(403);
+            $message = [
+                'message' => "Nincs hozzáférésed ehhez a tartalomhoz",
+            ];
+            return view('errors/html/error_403',$message);
+        }
     }
 
     public function createAdmin(){

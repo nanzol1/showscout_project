@@ -21,3 +21,5 @@ $routes->get('/logout', 'Login::logout');
 $routes->post('/profile/updateUser', 'Profile::updateUser');
 $routes->get('/film/reszletek/(:num)', 'Home::reszletek/$1');
 $routes->get('/home/filter', 'Home::filter');
+$routes->post('/profile/updateUserPicture/(:num)', 'Profile::updateUserPicture/$1');
+$routes->post('/login/adminAuthenticate', 'Login::adminAuthenticate');

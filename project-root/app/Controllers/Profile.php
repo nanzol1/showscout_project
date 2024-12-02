@@ -4,6 +4,7 @@ namespace App\Controllers;
 
 use App\Models\User_model;
 
+
 class Profile extends BaseController{
 
     public function index(){
@@ -19,10 +20,31 @@ class Profile extends BaseController{
             $userModel = new User_model();
             $data['register_date'] = $userModel->getUserByEmail($user['email'])['Created'];
             $data['user'] = $user;
+            $data['pid'] = session()->get('user_id');
+            $data['profile_img'] = $userModel->getUserByEmail($user['email'])['profile_img'];
+            $path = WRITEPATH . '../public/assets/images/profile/default';
+            $images = [];
+
+            if (is_dir($path)) {
+                $files = scandir($path);
+                foreach ($files as $file) {
+                    if (in_array(pathinfo($file, PATHINFO_EXTENSION), ['jpg', 'jpeg', 'png', 'gif'])) {
+                        $images[] = $file;
+                    }
+                }
+            }
+            $data['images'] = $images;
+            $data['isDefault'] = in_array($data['profile_img'],$images) ? true : false;
+
             return $this->loadPage("user/profile",$data);
         }
-        return $this->response->setStatusCode(404)->setBody("Az oldalhoz nincs hozzáférésed!");
+        $this->response->setStatusCode(403);
+        $message = [
+            'message' => "Nincs hozzáférésed ehhez a tartalomhoz",
+        ];
+        return view('errors/html/error_403',$message);
     }
+
 
     public function updateUser(){
         $userModel = new User_model();
@@ -58,6 +80,61 @@ class Profile extends BaseController{
             }else{
                 return redirect()->to(base_url('profile'));
             }
+        }
+    }
+
+    public function updateUserPicture($id){
+        $userModel = new User_model();
+        if($this->request->getMethod() === "POST"){
+            $img = $this->request->getFile('userfile');
+            if($img){
+                $validationRule = [
+                    'userfile' => [
+                        'label' => 'Profile Picture',
+                        'rules' => [
+                            'uploaded[userfile]',
+                            'is_image[userfile]',
+                            'mime_in[userfile,image/jpg,image/jpeg,image/gif,image/png,image/webp]',
+                            'max_size[userfile,200]',
+                            'max_dims[userfile,200,200]',
+                        ],
+                    ],
+                ];
+                if (!$this->validateData([], $validationRule)) {
+                    $data = ['errors' => $this->validator->getErrors()];
+
+                    return redirect()->to(base_url('profile'))->with('error','Hiba történt!');
+                }
+
+            
+                        
+                if (!$img->hasMoved()) {
+                    $newName = $img->getRandomName() ?? '';
+                    $img->move('assets/images/profile/', $newName);
+                }
+
+            
+                $data = ['errors' => 'The file has already been moved.'];
+                $id = session()->get('user_id');
+                $userData = [
+                    'profile_img' => $newName,
+                ];
+                $userModel->updateUser($id,$userData);
+                session()->set('profile_img',$newName);
+                return redirect()->to(base_url('profile'))->with('succes','Sikeres');
+                
+            }else{
+                $profileIMG = $this->request->getPost('profile_img');
+                $id = session()->get('user_id');
+                $userData = [
+                    'profile_img' => $profileIMG,
+                ];
+                $userModel->updateUser($id,$userData);
+                
+                return redirect()->to(base_url('profile'))->with('succes','Sikeres');
+
+            }
+
         }
     }
 
