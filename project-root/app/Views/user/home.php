@@ -1,3 +1,39 @@
+<?php /*API listázás csináld meg ez alapján
+        Ha valami adat kell hogy mit kell írni a ['title'] helyére
+        <?=var_dump($newmovies)?> Ezzel az összes filmet megkapod ami van az API 1. oldalán (21 film)*/?>
+<div class="container-fluid">
+    <div class="container">
+        <div class="row">
+            <div class="col-10">
+            <?php foreach($newmovies as $item): ?>
+                <div class="regular-title">
+                    <?=$item['title']?>
+                </div>
+            <?php endforeach;?>
+            </div>
+        </div>
+    </div>
+    <?php /*Ez a pagination működik, ezt használd összesen 500 oldal van*/?>
+    <nav aria-label="Page navigation example">
+        <ul class="pagination">
+          <?php if($page > $limitStart):?>
+              <li class="page-item"><a class="page-link" href="<?=base_url("/").$page - 1?>">Previous</a></li>
+          <?php else:?>
+              <li class="page-item disabled"><a class="page-link" href="<?=base_url("/").$page - 1?>" hidden>Previous</a></li>
+          <?php endif;?>
+
+            <?php for($i = $limitStart;$i <= $limitEnd;$i++):?>
+                <li class="page-item <?=$i == $page ? "active" : ""?>"><a class="page-link" href="<?=base_url("/").$i?>"><?=$i?></a></li>
+            <?php endfor;?>
+
+          <?php if($page < $limitEnd):?>
+              <li class="page-item"><a class="page-link" href="<?=base_url("/").$page + 1?>">Next</a></li>
+          <?php else:?>
+              <li class="page-item disabled"><a class="page-link" href="<?=base_url("/").$page + 1?>" hidden>Next</a></li>
+          <?php endif;?>
+        </ul>
+    </nav>
+</div>
 <div class="container-fluid movie-container">
     <div class="row justify-content-center">
         <div class="col-10">

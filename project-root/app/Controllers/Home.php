@@ -10,9 +10,9 @@ class Home extends BaseController
 {
     protected $helpers = ['form'];
 
-    public function index()
+    public function index($page = 1)
     {
-        return $this->loadMovies();
+        return $this->loadMovies($page);
     }
 
     public function filter()
@@ -66,11 +66,23 @@ class Home extends BaseController
     
 
 
-    public function loadMovies()
+    public function loadMovies($page = 1)
     {
         $moviesModel = new Media_model();
         $movies = $moviesModel->getStreaming();
+        $newMovies = getMovies($page,"popularity.desc");
+        $data['newmovies'] = $newMovies;
         $data['movies'] = $movies;
+        $data['page'] = $page;
+        $total_page = 500;
+        $limitStart = max(1,$page - 1);
+        $limitEnd = min($total_page,$limitStart + 5);
+        $data['total_page'] = $total_page;
+        $data['limitStart'] = $limitStart;
+        $data['limitEnd'] = $limitEnd;
+        if($limitEnd - $limitStart < 3){
+            $limitStart = max(1,$limitEnd - 5);
+        }
 
         // Szolgáltatók listája
         $providersModel = new Streamingservice_model();
