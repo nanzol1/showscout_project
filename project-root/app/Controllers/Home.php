@@ -97,7 +97,7 @@ class Home extends BaseController
         $movies = getMovies();
         $casts = getCastByMovie($id);
         $teaser = getMovieTeaser($id);
-        $providers = getWatchProviders($id);
+        $providers = getWhereToWatch('movie-'.$id);
         foreach($movies as $item){
             if(in_array($id,$item)){
                 $movie = $item;
@@ -106,11 +106,6 @@ class Home extends BaseController
         $movie['casts'] = $casts;
         $movie['teaser'] = $teaser;
         $movie['providers'] = $providers;
-        //$movieModel = new Media_model();
-        /*$movie = $movieModel->select('media.*, streamingservices.Name as StreamingProvider, streamingservices.Lowest_price_plan as Price, streamingservices.Link')
-            ->join('streamingservices', 'streamingservices.ID = media.Ss_id')
-            ->where('media.ID', $id)
-            ->first();*/
 
         if (!$movies) {
             throw new \CodeIgniter\Exceptions\PageNotFoundException("Movie not found");

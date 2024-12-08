@@ -694,6 +694,7 @@ a.list-group-item, .list-group-item-action {
 }
 
 .movie-release-date,
+.moivedet-type,
 .movie-streaming-provider,
 .movie-price {
     font-weight: lighter;
