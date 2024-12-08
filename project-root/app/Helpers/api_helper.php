@@ -38,6 +38,8 @@ if(!function_exists('getMovies')){
         return $cleanedMovies;
     }
 }
+
+
 //getSeries(1,2000-01-01,2024-12-30,"first_air_date.desc","en")
           //int,dátum formátum/string,dátum formátum/string,string,"string",
 if(!function_exists("getSeries")){
@@ -65,7 +67,7 @@ if(!function_exists("getSeries")){
                     'first_air_date' => $serie['first_air_date'] ?? "N/A",
                     'poster_path' => isset($serie['poster_path']) ?
                                 'https://image.tmdb.org/t/p/w500' . $serie['poster_path']
-                                : "Nincs",
+                                : null,
                     'vote_average' => $serie['vote_average'] ?? 0,
                     'genre_ids' => $serie['genre_ids'] ?? "N/A",
                 ];
@@ -88,7 +90,7 @@ if(!function_exists("convertMoney")){
 if(!function_exists("getWhereToWatch")){
     function getWhereToWatch($id){
         $ch = curl_init();
-        curl_setopt($ch, CURLOPT_URL, 'https://api.watchmode.com/v1/title/'.$id.'/sources/?apiKey=FLPBIhKYk3xWRN3wc7VsggYyutL2aVeyTZ0nmfwh');
+        curl_setopt($ch, CURLOPT_URL, 'https://api.watchmode.com/v1/title/'.$id.'/sources/?apiKey=RPwn1OgHonYuRWkBgrTCLh9R50S29EmMZ1R1z04k');
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
         curl_setopt($ch, CURLOPT_FOLLOWLOCATION, 1);
         $response = curl_exec($ch);
@@ -208,8 +210,100 @@ if(!function_exists('getWatchProviders')){
         }else{
             $cleanedProviders = [];
         }
-        
         return $cleanedProviders;
     }
 }
+
+if(!function_exists('getMovie')){
+    function getMovie($id){
+        
+        $client = new \GuzzleHttp\Client();
+
+        $response = $client->request('GET', 'https://api.themoviedb.org/3/movie/'.$id.'?language=hu-HU', [
+            'headers' => [
+                'Authorization' => 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI4NWRkZGVlOTk4NzRlZWRlOTk5OTRmN2FhZGY4MTc4MyIsIm5iZiI6MTczMjU1NjMyNy44OTYwOTE3LCJzdWIiOiI2NzQ0ODMwNGMyNDc2NWZhMmYyZGU5MjAiLCJzY29wZXMiOlsiYXBpX3JlYWQiXSwidmVyc2lvbiI6MX0.TVNHSYeWGchAa-xMUtm05EF6WpOn7e1of51apjHW9JE',
+              'accept' => 'application/json',
+            ],
+          ]);
+
+        $responseBody = json_decode($response->getBody(),true);
+
+        if(isset($responseBody)){
+            $cleanedDetails = array_map(function($movie){
+                return [
+                    'id' => $movie['id'] ?? "N/A",
+                    'title' => $movie['title'] ?? "N/A",
+                    'overview' => $movie['overview'] ?? "N/A",
+                    'release_date' => $movie['release_date'] ?? "N/A",
+                    'poster_path' => isset($movie['poster_path']) ?
+                                'https://image.tmdb.org/t/p/w500' . $movie['poster_path']
+                                : null,
+                    'vote_average' => $movie['vote_average'] ?? "N/A",
+                    'genre_ids' => $movie['genre_ids'] ?? "N/A",
+                ];
+            },$responseBody);
+        }else{
+            $cleanedDetails = [];
+        }
+
+        return $responseBody;
+    }
+}
+
+if (!function_exists('getGenres')) {
+    function getGenres() {
+        $client = new \GuzzleHttp\Client();
+        $response = $client->request('GET', 'https://api.themoviedb.org/3/genre/movie/list?language=en', [
+            'headers' => [
+                'Authorization' => 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI4NWRkZGVlOTk4NzRlZWRlOTk5OTRmN2FhZGY4MTc4MyIsIm5iZiI6MTczMjU1NjMyNy44OTYwOTE3LCJzdWIiOiI2NzQ0ODMwNGMyNDc2NWZhMmYyZGU5MjAiLCJzY29wZXMiOlsiYXBpX3JlYWQiXSwidmVyc2lvbiI6MX0.TVNHSYeWGchAa-xMUtm05EF6WpOn7e1of51apjHW9JE',
+                'accept' => 'application/json',
+            ],
+        ]);
+
+        $responseBody = json_decode($response->getBody(), true);
+
+        if (isset($responseBody['genres'])) {
+            $genres = $responseBody['genres'];
+
+            $cleanedGenres = array_map(function($genre) {
+                return [
+                    'id' => $genre['id'] ?? "N/A",
+                    'name' => $genre['name'] ?? "N/A",
+                ];
+            }, $genres);
+        } else {
+            $cleanedGenres = [];
+        }
+        return $cleanedGenres;
+    }
+}
+
+if (!function_exists('getTvGenres')) {
+    function getTvGenres() {
+        $client = new \GuzzleHttp\Client();
+        $response = $client->request('GET', 'https://api.themoviedb.org/3/genre/tv/list?language=en', [
+            'headers' => [
+                'Authorization' => 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI4NWRkZGVlOTk4NzRlZWRlOTk5OTRmN2FhZGY4MTc4MyIsIm5iZiI6MTczMjU1NjMyNy44OTYwOTE3LCJzdWIiOiI2NzQ0ODMwNGMyNDc2NWZhMmYyZGU5MjAiLCJzY29wZXMiOlsiYXBpX3JlYWQiXSwidmVyc2lvbiI6MX0.TVNHSYeWGchAa-xMUtm05EF6WpOn7e1of51apjHW9JE',
+                'accept' => 'application/json',
+            ],
+        ]);
+
+        $responseBody = json_decode($response->getBody(), true);
+
+        if (isset($responseBody['genres'])) {
+            $genres = $responseBody['genres'];
+
+            $cleanedGenres = array_map(function($genre) {
+                return [
+                    'id' => $genre['id'] ?? "N/A",
+                    'name' => $genre['name'] ?? "N/A",
+                ];
+            }, $genres);
+        } else {
+            $cleanedGenres = [];
+        }
+        return $cleanedGenres;
+    }
+}
+
 ?>

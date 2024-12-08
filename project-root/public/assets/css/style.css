@@ -432,6 +432,49 @@ a.list-group-item, .list-group-item-action {
   color: #333;
   line-height: 1.5;
 }
+
+/* Szűrők stílusa */
+.filter-sidebar {
+    background-color: #f8f9fa; /* Világos szürke háttér */
+    padding: 20px;
+    border-right: 1px solid #ddd; /* Elválasztó vonal */
+  }
+  
+  .filter-sidebar .form-check {
+    margin-bottom: 10px;
+  }
+  
+  .filter-sidebar .form-group {
+    margin-bottom: 20px;
+  }
+  
+  .filter-sidebar label {
+    font-weight: bold;
+    display: block;
+    margin-bottom: 10px;
+  }
+  
+  .filter-sidebar button {
+    margin-top: 20px;
+  }
+  
+  /* Média konténer igazítása */
+  .movie-container {
+    margin-top: 20px;
+  }
+  
+  .movie-card {
+    margin-bottom: 20px;
+  }
+  
+  /* Általános reszponzivitás */
+  @media (max-width: 768px) {
+    .filter-sidebar {
+      border-right: none;
+      margin-bottom: 20px;
+    }
+  }
+
 /*HOME CSS END*/
 
 /*ADMIN CSS START*/

@@ -14,6 +14,22 @@
             <div class="moviedetails-type">
                 <?= isset($movie['title']) ? 'Film' : 'Sorozat' ?>
             </div>
+
+            <!-- Műfajok megjelenítése -->
+            <div class="movie-genres">
+                <span class="details-list">Műfajok:</span>
+                <?php
+                if (!empty($movie['genres'])) {
+                    $genres = array_map(function($genre) {
+                        return $genre['name']; // A műfajok neve
+                    }, $movie['genres']);
+                    echo implode(', ', $genres); // Műfajok listája, vesszővel elválasztva
+                } else {
+                    echo 'N/A';
+                }
+                ?>
+            </div>
+
             <div class="movie-streaming-provider">
                 <span class="details-list">Streaming szolgáltató:</span>
                 <?php
@@ -37,8 +53,8 @@
 
                 $platform = 'N/A'; // Alapértelmezett érték, ha nem találunk magyar szolgáltatót
 
-                if (!empty($movie["providers"])) {
-                    foreach ($movie["providers"] as $provider) {
+                if (!empty($movie["streaming"])) {
+                    foreach ($movie["streaming"] as $provider) {
                         if (in_array($provider['name'], $hungarianPlatforms)) {
                             $platform = $provider['name'];
                             break;
