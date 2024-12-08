@@ -71,10 +71,11 @@ class Home extends BaseController
         $moviesModel = new Media_model();
         $movies = $moviesModel->getStreaming();
         $newMovies = getMovies($page,"popularity.desc");
-        $data['newmovies'] = $newMovies;
-        $data['movies'] = $movies;
+        $newSeries = getSeries($page);
+        $data['newmovies'] = array_slice($newMovies,0,4);
+        $data['newseries'] = $newSeries;
         $data['page'] = $page;
-        $total_page = 500;
+        $total_page = 2;
         $limitStart = max(1,$page - 1);
         $limitEnd = min($total_page,$limitStart + 5);
         $data['total_page'] = $total_page;

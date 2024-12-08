@@ -1,18 +1,81 @@
 <?php /*API listázás csináld meg ez alapján
         Ha valami adat kell hogy mit kell írni a ['title'] helyére
         <?=var_dump($newmovies)?> Ezzel az összes filmet megkapod ami van az API 1. oldalán (21 film)*/?>
-<div class="container-fluid">
+<div class="container-fluid movie-container">
     <div class="container">
-        <div class="row">
+        <div class="row justify-content-center">
             <div class="col-10">
-            <?php foreach($newmovies as $item): ?>
-                <div class="regular-title">
-                    <?=$item['title']?>
-                </div>
-            <?php endforeach;?>
+                <?php foreach ($newmovies as $item): ?>
+                    <?php 
+                        $hungarianPlatforms = [
+                            'Amazon', 
+                            'AppleTV', 
+                            'VUDU', 
+                            'Windows Store', 
+                            'Netflix', 
+                            'HBO Max', 
+                            'Disney+', 
+                            'YouTube', 
+                            'Rakuten TV', 
+                            'Sky Store', 
+                            'FilmBox', 
+                            'Google Play Movies', 
+                            'Tubi TV', 
+                            'Epix Now', 
+                            'Hulu'
+                        ]; 
+    
+                        // Meghívjuk a getWheretoWatch függvényt
+                        $test = getWheretoWatch('movie-' . $item['id']);
+                        
+                        // Alapértelmezett platform érték, ha nem találunk magyar szolgáltatót
+                        $platform = 'N/A';
+                        
+                        // Végigmegyünk az összes szolgáltatón
+                        foreach ($test as $provider) {
+                            // Ha a szolgáltató neve szerepel a magyar szolgáltatók listájában
+                            if (in_array($provider['name'], $hungarianPlatforms)) {
+                                // A platform változónak átadjuk az első magyar szolgáltatót
+                                $platform = $provider['name'];
+                                break; // Kilépünk a ciklusból, mert megtaláltuk az első megfelelő szolgáltatót
+                            }
+                        }?>
+                    <?=var_dump($test)?>
+                    <div class="regular-title">
+                        <?=$item['id']?>
+                    </div>
+                    <div class="movie-card">
+                        <div class="movie-image">
+                            <img src="https://image.tmdb.org/t/p/w500<?= $item['poster_path'] ?>" 
+                                 alt="<?= isset($item['title']) ? $item['title'] : $item['name'] ?>">
+                        </div>
+                        <div class="movie-info">
+                            <div class="movie-heading">
+                                <?= isset($item['title']) ? $item['title'] : $item['name'] ?>
+                            </div>
+                            <div class="movie-release">
+                                <?= $item['release_date'] ?? 'N/A' ?>
+                            </div>
+                            <div class="movie-type">
+                                <?= isset($item['title']) ? 'Film' : 'Sorozat' ?>
+                            </div>
+                            <div class="movie-ss">
+                                <?= $platform ?>
+                            </div>
+                            <div class="movie-summary">
+                                <div class="movie-desc">
+                                    <?= substr($item['overview'], 0, 400) ?>...
+                                </div>
+                                <a href="<?= base_url('film/reszletek/' . $item['id']) ?>" class="read-more-link">Tovább</a>
+                            </div>
+                        </div>
+                    </div>
+                <?php endforeach; ?>
             </div>
         </div>
     </div>
+
+
     <?php /*Ez a pagination működik, ezt használd összesen 500 oldal van*/?>
     <nav aria-label="Page navigation example">
         <ul class="pagination">
@@ -34,36 +97,8 @@
         </ul>
     </nav>
 </div>
-<div class="container-fluid movie-container">
-    <div class="row justify-content-center">
-        <div class="col-10">
-            <?php foreach($movies as $item): ?>
-                <div class="movie-card">
-                    <div class="movie-image">
-                        <img src="<?= base_url('assets/images/').(is_object($item) ? $item->Img_path : $item['Img_path']) ?>" alt="Movie pic">
-                    </div>
-                    <div class="movie-info">
-                        <div class="movie-heading">
-                            <?= is_object($item) ? $item->Title : $item['Title'] ?>
-                        </div>
-                        <div class="movie-release">
-                            <?= is_object($item) ? $item->Released : $item['Released'] ?>
-                        </div>
-                        <div class="movie-ss">
-                            <?= is_object($item) ? $item->StreamingProvider : $item['StreamingProvider'] ?>
-                        </div>
-                        <div class="movie-summary">
-                            <div class="movie-desc">
-                                <?= substr(is_object($item) ? $item->Description : $item['Description'], 0, 400) ?>...
-                            </div>
-                            <a href="<?= base_url('film/reszletek/'.(is_object($item) ? $item->ID : $item['ID'])) ?>" class="read-more-link">Tovább</a>
-                        </div>
-                    </div>
-                </div>
-            <?php endforeach; ?>
-        </div>
-    </div>
-</div>
+
+
 
 <script>
     window.addEventListener("scroll", function() {
