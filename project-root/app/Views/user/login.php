@@ -17,11 +17,19 @@
                             <label for="username">Felhasználónév</label>
                             <input class="form-control" type="text" id="username" name="username" placeholder="Felhasználónév" required>
                         </div>
-
                         <div class="form-group mb-3">
                             <label for="password">Jelszó</label>
                             <input class="form-control" type="password" id="password" name="password" placeholder="Jelszó" required>
+                            <div class="mt-2">
+                                <input type="checkbox" onclick="togglePassword()"> Jelszó megjelenítése
+                            </div>
                         </div>
+                        <script>
+                            function togglePassword() {
+                                var x = document.getElementById("password");
+                                x.type = x.type === "password" ? "text" : "password";
+                            }
+                        </script>
 
                         <div class="form-group mb-3">
                             <button class="btn btn-primary w-100" type="submit">Bejelentkezés</button>
