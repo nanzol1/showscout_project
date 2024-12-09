@@ -4,8 +4,8 @@
 - **Adatbázis**: MySQL
 
 ## 2. Funkciók
-- **Főoldal**: Legújabb filmek listája készítővel, megjelenéssel, streaming szolgáltatóval és rövid leírással.
-- **Filmnézet**: Egy adott film minden adatának megjelenítése.
+- **Főoldal**: Filmek listája, megjelenéssel, streaming szolgáltatóval, rövid leírással, valamint műfajjal és típussal.
+- **Részletes nézet**: Egy adott film/sorozat minden adatának megjelenítése.
 - **Profilnézet**: Az adott felhasználó regisztrációkor megadott adatainak megjelenítése.
 - **Adminfelület**: Filmek oldalának létrehozása, szerkesztése, törlése.
 
