@@ -6,7 +6,7 @@ Jelenleg nincs központi online platform, amely az összes szükséges adatot ta
 
 ## 2. Vágyálom rendszer leírása
 
-A cél egy olyan weboldal létrehozása, ahol felhasználók filmek és sorozatok részletes adataihoz férhetnek hozzá egy helyen. A rendszer keresési lehetőségeket biztosít, hogy a felhasználók gyorsan megtalálják a számukra releváns tartalmakat. A vágyálom rendszer lehetővé teszi a felhasználók számára az adatok böngészését, rendezését, szűrését, valamint értékelések és kommentek megjelenítését. A felhasználói élményt egyértelmű navigáció és gyors válaszidő segíti.
+A cél egy olyan weboldal létrehozása, ahol felhasználók filmek és sorozatok részletes adataihoz férhetnek hozzá egy helyen. A rendszer szűrési lehetőségeket biztosít, hogy a felhasználók gyorsan megtalálják a számukra releváns tartalmakat. A vágyálom rendszer lehetővé teszi a felhasználók számára az adatok böngészését, szűrését.
 
 ## 3. A rendszerre vonatkozó pályázat, törvények, rendeletek, szabványok és ajánlások felsorolása
 
@@ -36,14 +36,11 @@ A cél egy olyan weboldal létrehozása, ahol felhasználók filmek és sorozato
 ## 6. Követelménylista
 
 1.	Felhasználói regisztráció és bejelentkezés: Lehetővé kell tenni a felhasználók számára a regisztrációt és bejelentkezést a profiladatok mentésére és kezelésére.
-2.	Film- és sorozatadatok megjelenítése: Minden tartalom részletes adatlapja jelenjen meg, beleértve a címet, megjelenési évet, rendezőt, szereplőket, leírást, értékelést és hozzászólásokat.
-3.	Keresési funkció: A felhasználók többféle kritérium alapján kereshetnek, mint cím, év, műfaj, értékelés stb.
-4.	Szűrési lehetőségek: Szűrők, például műfaj, év, értékelés vagy népszerűség szerinti rendezés biztosítása.
-5.	Felhasználói értékelések és hozzászólások: A felhasználók hozzászólásokat és értékeléseket hagyhatnak filmekhez és sorozatokhoz.
-6.	Adminisztrátori jogosultságok: Az adminisztrátorok kezelhetik a felhasználói tartalmakat, moderálhatják a hozzászólásokat és frissíthetik az adatbázist.
-7.	Profilkezelés: A felhasználók frissíthetik a saját profiljukat, beállíthatják a kedvenceiket és kezelhetik a beállításaikat.
-8.	Adatbiztonság: Biztosítani kell a felhasználói és tartalmi adatok titkosítását és védelmét.
-9.	Statisztikai riportok: Az adminisztrátorok számára elérhetők legyenek statisztikai riportok a felhasználói viselkedésről, tartalom népszerűségéről stb.
+2.	Film- és sorozatadatok megjelenítése: Minden tartalom részletes adatlapja jelenjen meg, beleértve a címet, megjelenési évet, leírást, műfajt, típust.
+3.	Szűrési lehetőségek: Szűrők, például műfaj, év, típus, megjelenés dátuma.
+4.	Adminisztrátori jogosultságok: Az adminisztrátorok kezelhetik frissíthetik az adatbázist.
+5.	Profilkezelés: A felhasználók frissíthetik a saját profiljukat.
+6.	Adatbiztonság: Biztosítani kell a felhasználói és tartalmi adatok titkosítását és védelmét.
     
 ## 7. Fogalomszótár
 
@@ -54,8 +51,6 @@ A cél egy olyan weboldal létrehozása, ahol felhasználók filmek és sorozato
 •	Bejelentkezés: Felhasználói folyamat, amely során a regisztrált felhasználók beléphetnek a rendszerbe.
 
 •	Felhasználó: A rendszer azon látogatói, akik böngészik az oldal tartalmát, értékeléseket és kommentárokat hagyhatnak.
-
-•	Keresési funkció: Eszköz a tartalmak közötti böngészéshez különböző szempontok alapján.
 
 •	Szűrés: A tartalom kiválasztásának lehetősége meghatározott paraméterek, például műfaj, év, értékelés szerint.
 
