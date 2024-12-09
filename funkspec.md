@@ -1,4 +1,4 @@
-# Funkcionális specifikáció
+![image](https://github.com/user-attachments/assets/b5bc2fab-3391-4755-96b4-6c8d8eeaac09)# Funkcionális specifikáció
 ## Adminisztrátori user story:
 A ShowScout csapata szeretne egy oldalt, ahova a megjelent filmeket/sorozatokat tudják felvinni, hogy egy helyen megtalálhatóak legyenek a filmek/sorozatok adatai. Mikor sikeresen belépnek az admin felületre, megfelelő autentikáció után, akkor szeretnék, hogy tudjanak új filmeket felvenni, meglévő filmek adatait módosítani, továbba filmeket törölni. 
 ## Felhasználói user story:
@@ -34,7 +34,9 @@ Oldal tartalma:
 -Szűrő, ahol műfaj, típus, dátum és szolgáltató alapján szűrhetőek a megjelenő sorozatok/filmek.   
 -A filmre/sorozatra kattintva elérhető a film/sorozat saját oldala, ahol bővebb információk találhatóak róla.
 ## Profile oldal:
-![image](https://github.com/user-attachments/assets/68cde71e-4837-4c9c-93a3-63211c1f33ea)
+![image](https://github.com/user-attachments/assets/30090eac-77bf-4813-98b7-65b6ede3090c)
+
+
 Oldal fő funkciója: Bejelentkezett felhasználó kezelőoldala
 
 Oldal tartalma:
