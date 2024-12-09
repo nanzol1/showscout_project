@@ -4,6 +4,11 @@
 
             <div class="card shadow-sm">
                 <div class="card-body">
+                    <?php if (session()->getFlashdata('error')): ?>
+                        <div class="alert alert-danger">
+                            <?= session()->getFlashdata('error') ?>
+                        </div>
+                    <?php endif; ?>
                     <h3 class="text-center mb-4">Bejelentkezés</h3>
                     <form action="login/authenticate" method="POST">
                         <?= csrf_field() ?>
